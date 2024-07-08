@@ -754,6 +754,9 @@ select {
 .flex {
   display: flex;
 }
+.table {
+  display: table;
+}
 .h-10 {
   height: 2.5rem;
 }
