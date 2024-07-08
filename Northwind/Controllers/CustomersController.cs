@@ -8,7 +8,7 @@ namespace Northwind.Controllers
     public class CustomersController : Controller
     {
         private readonly ApplicationDbContext _context;
-        private const int PageSize = 10;
+        private const int PageSize = 5;
 
         public CustomersController(ApplicationDbContext context)
         {
