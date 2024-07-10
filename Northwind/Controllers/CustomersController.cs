@@ -14,7 +14,7 @@ namespace Northwind.Controllers
         {
             _context = context;
         }
-
+        
         public IActionResult Index(int page = 1)
         {
             var totalCustomers = _context.Customers.Count();

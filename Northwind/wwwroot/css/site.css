@@ -4,7 +4,7 @@
 
 @font-face {
     font-family: 'Metal Mania';
-    src: url('./font/MetalMania.ttf') format('truetype');
+    src: url('../font/MetalMania.ttf') format('truetype');
 }
 
 .metal-mania {
