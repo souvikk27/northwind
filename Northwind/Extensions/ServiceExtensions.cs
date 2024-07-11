@@ -13,10 +13,15 @@ public static class ServiceExtensions
             options.UseSqlServer(configuration.GetConnectionString("Northwind")));
     }
 
-    public static void Configureidentity(this IServiceCollection services)
+    public static void ConfigureIdentity(this IServiceCollection services)
     {
         services.AddIdentity<ApplicationUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
             .AddEntityFrameworkStores<ApplicationDbContext>()
             .AddDefaultTokenProviders();
     }
+
+    public static void ConfigureAuthorizationPolicy(this IServiceCollection services)
+    {
+	    
+	}
 }

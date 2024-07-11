@@ -4,7 +4,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
 builder.Services.ConfigureDbContext(builder.Configuration);
-builder.Services.Configureidentity();
+builder.Services.ConfigureIdentity();
 
 var app = builder.Build();
 if (!app.Environment.IsDevelopment())
