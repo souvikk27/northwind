@@ -92,7 +92,6 @@ namespace Northwind.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(string id, [Bind("Id,Name")] IdentityRole role)
         {
             if (id != role.Id)
