@@ -58,28 +58,15 @@ namespace Northwind.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(string rolename)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                var result = await _roleManager.CreateAsync(new IdentityRole(rolename));
-                if (result.Succeeded)
-                {
-                    TempData["SuccessMessage"] = "Role created successfully!";
-                    return RedirectToAction("Index");
-                }
-
-                foreach (var error in result.Errors)
-                {
-                    ModelState.AddModelError(string.Empty, error.Description);
-                }
-
-                TempData["ErrorMessage"] = "Failed to create role. Please check the errors.";
-            }
-            else
-            {
-                TempData["ErrorMessage"] = "Invalid input. Please check your entries.";
+                return View();
             }
 
-            return View(rolename);
+            var result = await _roleService.AddRole(new IdentityRole(rolename));
+            return result.IsSuccess
+                ? RedirectToActionWithSuccess("Role created successfully.")
+                : RedirectToActionWithError(result.Error);
         }
 
         [HttpGet]
