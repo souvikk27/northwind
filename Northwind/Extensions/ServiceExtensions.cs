@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Northwind.Context;
 using Northwind.Models;
+using Northwind.Services.Railway;
 
 namespace Northwind.Extensions;
 
@@ -19,7 +20,13 @@ public static class ServiceExtensions
             .AddEntityFrameworkStores<ApplicationDbContext>()
             .AddDefaultTokenProviders();
     }
-
+    
+    public static void ConfigureRailwayPattern(this IServiceCollection services)
+    {
+        services.AddScoped<IRoleService, RoleService>();
+    }
+    
+    
     public static void ConfigureAuthorizationPolicy(this IServiceCollection services)
     {
 	    

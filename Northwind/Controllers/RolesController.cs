@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Northwind.Services.Railway;
 using Northwind.ViewModels;
 
 namespace Northwind.Controllers
@@ -8,11 +9,13 @@ namespace Northwind.Controllers
     public class RolesController : Controller
     {
         private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly IRoleService _roleService;
         private const int PageSize = 5;
 
-        public RolesController(RoleManager<IdentityRole> roleManager)
+        public RolesController(RoleManager<IdentityRole> roleManager, IRoleService roleService)
         {
             _roleManager = roleManager;
+            _roleService = roleService;
         }
 
         [HttpGet]
@@ -61,7 +64,7 @@ namespace Northwind.Controllers
                 if (result.Succeeded)
                 {
                     TempData["SuccessMessage"] = "Role created successfully!";
-                    return View();
+                    return RedirectToAction("Index");
                 }
 
                 foreach (var error in result.Errors)
@@ -94,55 +97,43 @@ namespace Northwind.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(string id, [Bind("Id,Name")] IdentityRole role)
         {
-            if (id != role.Id)
+            if (!ModelState.IsValid)
             {
-                return NotFound();
+                return View(role);
             }
 
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    var existingRole = await _roleManager.FindByIdAsync(id);
-                    if (existingRole == null)
-                    {
-                        return NotFound();
-                    }
-
-                    existingRole.Name = role.Name;
-                    var result = await _roleManager.UpdateAsync(existingRole);
-
-                    if (result.Succeeded)
-                    {
-                        TempData["SuccessMessage"] = "Role updated successfully.";
-                        return RedirectToAction(nameof(Index));
-                    }
-
-                    foreach (var error in result.Errors)
-                    {
-                        ModelState.AddModelError("", error.Description);
-                    }
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!await RoleExists(role.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-            }
-
-            TempData["ErrorMessage"] = "There was an error updating the role. Please check the form and try again.";
-            return View(role);
+            var result = await _roleService.UpdateRole(id, role);
+            return result.IsSuccess
+                ? RedirectToActionWithSuccess("Role updated successfully.")
+                : HandleUpdateFailure(result.Error, role);
         }
 
-        private async Task<bool> RoleExists(string id)
+        [HttpDelete]
+        public async Task<IActionResult> Delete(string id)
         {
-            return await _roleManager.RoleExistsAsync(id);
+            var result = await _roleService.DeleteRole(id);
+            return result.IsSuccess
+                ? RedirectToActionWithSuccess("Role deleted successfully.")
+                : RedirectToActionWithError(result.Error);
+        }
+        
+        private IActionResult RedirectToActionWithSuccess(string message)
+        {
+            TempData["SuccessMessage"] = message;
+            return RedirectToAction(nameof(Index));
+        }
+
+        private IActionResult RedirectToActionWithError(string error)
+        {
+            TempData["ErrorMessage"] = error;
+            return RedirectToAction(nameof(Index));
+        }
+        
+        private IActionResult HandleUpdateFailure(string error, IdentityRole role)
+        {
+            ModelState.AddModelError("", error);
+            TempData["ErrorMessage"] = "There was an error updating the role. Please check the form and try again.";
+            return View(role);
         }
     }
 }

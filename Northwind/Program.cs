@@ -5,6 +5,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.ConfigureDbContext(builder.Configuration);
 builder.Services.ConfigureIdentity();
+builder.Services.ConfigureRailwayPattern();
 
 var app = builder.Build();
 if (!app.Environment.IsDevelopment())
