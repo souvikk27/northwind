@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 
-namespace Northwind.Services.Railway;
+namespace Northwind.Services.Railway.Roles;
 
 public interface IRoleService
 {

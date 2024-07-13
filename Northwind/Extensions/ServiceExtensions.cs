@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Northwind.Context;
 using Northwind.Models;
 using Northwind.Services.Railway;
+using Northwind.Services.Railway.Roles;
 
 namespace Northwind.Extensions;
 
