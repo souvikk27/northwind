@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using System.Security.Claims;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Northwind.ViewModels;
@@ -51,7 +52,7 @@ namespace Northwind.Controllers
 
             return View(controllerInfos);
         }
-        
+
         [HttpPost]
         public async Task<IActionResult> SaveRolePermissions(List<RolePermissionUpdateVm> permissions)
         {
@@ -59,31 +60,40 @@ namespace Northwind.Controllers
             {
                 return BadRequest("No permissions provided.");
             }
+
             foreach (var permission in permissions)
             {
                 var role = await _roleManager.FindByIdAsync(permission.RoleId);
                 if (role == null)
                 {
-                    return NotFound($"Role {permission.ControllerName} not found.");
+                    return NotFound($"Role with ID {permission.RoleId} not found.");
                 }
-                var claims = await _roleManager.GetClaimsAsync(role);
-                var claim = claims.FirstOrDefault(c => c.Type == "Permission" && c.Value == $"{permission.ControllerName}-{permission.ActionMethodName}");
 
-                if (permission.IsAllowed)
+                var claims = await _roleManager.GetClaimsAsync(role);
+
+                foreach (var action in permission.Actions)
                 {
-                    if (claim == null)
+                    var claimValue = $"{permission.ControllerName}-{action.ActionMethodName}";
+                    var claim = claims.FirstOrDefault(c => c.Type == "Permission" && c.Value == claimValue);
+
+                    if (action.IsAllowed)
                     {
-                        await _roleManager.AddClaimAsync(role, new System.Security.Claims.Claim("Permission", $"{permission.ControllerName}-{permission.ActionMethodName}"));
+                        if (claim == null)
+                        {
+                            await _roleManager.AddClaimAsync(role,
+                                new Claim("Permission", claimValue));
+                        }
                     }
-                }
-                else
-                {
-                    if (claim != null)
+                    else
                     {
-                        await _roleManager.RemoveClaimAsync(role, claim);
+                        if (claim != null)
+                        {
+                            await _roleManager.RemoveClaimAsync(role, claim);
+                        }
                     }
                 }
             }
+
             return RedirectToAction("Index", "Roles"); // Adjust the redirect as needed
         }
     }

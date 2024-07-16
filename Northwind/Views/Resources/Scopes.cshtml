@@ -2,35 +2,33 @@
 @{
     ViewData["Title"] = "Scopes";
 }
-
 <section class="container mx-auto px-4 py-8">
-    <div class="flex items-center justify-between mb-6">
+    <div class="mb-6 flex items-center justify-between">
         <div class="flex items-center gap-x-3">
             <h2 class="text-2xl font-bold text-gray-800">Scopes</h2>
             <span class="rounded-full bg-blue-100 px-3 py-1 text-sm font-medium text-blue-600">@Model.Count() scopes</span>
         </div>
-        <button type="submit" form="scopesForm" class="bg-gradient-to-r from-blue-500 to-blue-700 hover:from-blue-600 hover:to-blue-800 text-white font-semibold px-6 py-2 rounded-lg transition duration-300 ease-in-out transform hover:scale-105 shadow-lg">
+        <button type="submit" form="scopesForm" class="transform rounded-lg bg-gradient-to-r from-blue-500 to-blue-700 px-6 py-2 font-semibold text-white shadow-lg transition duration-300 ease-in-out hover:from-blue-600 hover:to-blue-800 hover:scale-105">
             Save Changes
         </button>
     </div>
-
     <form id="scopesForm" method="post" class="space-y-6" asp-action="SaveRolePermissions" asp-controller="Resources">
         @for (int i = 0; i < Model.Count(); i++)
         {
             var controller = Model.ElementAt(i);
-            <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300 ease-in-out transform hover:scale-105">
-                <h3 class="text-xl font-semibold text-gray-800 mb-4">@controller.Name</h3>
+            <div class="transform rounded-lg bg-white p-6 shadow-md transition duration-300 ease-in-out hover:shadow-lg hover:scale-105">
+                <h3 class="mb-4 text-xl font-semibold text-gray-800">@controller.Name</h3>
                 <ul class="space-y-3">
                     @for (int j = 0; j < controller.ActionMethods.Count(); j++)
                     {
                         var action = controller.ActionMethods.ElementAt(j);
                         <li>
-                            <label class="flex items-center space-x-3 cursor-pointer">
+                            <label class="flex cursor-pointer items-center space-x-3">
                                 <input type="hidden" name="permissions[@i].RoleId" value="@controller.RoleId" />
-                                <input type="hidden" name="permissions[@i].ControllerName" value="@controller.Name"/>
-                                <input type="hidden" name="permissions[@i].ActionMethodName" value="@action.ActionMethodName"/>
-                                <input type="checkbox" name="permissions[@i].IsAllowed" value="true" @(action.IsAllowed ? "checked" : "") class="form-checkbox h-5 w-5 text-blue-600 rounded focus:ring-blue-500">
-                                <span class="text-gray-700 font-medium">@action.ActionMethodName</span>
+                                <input type="hidden" name="permissions[@i].ControllerName" value="@controller.Name" />
+                                <input type="hidden" name="permissions[@i].Actions[@j].ActionMethodName" value="@action.ActionMethodName" />
+                                <input type="checkbox" name="permissions[@i].Actions[@j].IsAllowed" value="true" @(action.IsAllowed ? "checked" : "") class="form-checkbox h-5 w-5 rounded text-blue-600 focus:ring-blue-500">
+                                <span class="font-medium text-gray-700">@action.ActionMethodName</span>
                             </label>
                         </li>
                     }

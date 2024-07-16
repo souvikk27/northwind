@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Northwind.Context;
 using Northwind.Models;
 using Northwind.Services.Railway;
+using Northwind.Services.Railway.Resource;
 using Northwind.Services.Railway.Roles;
 
 namespace Northwind.Extensions;
@@ -25,6 +26,7 @@ public static class ServiceExtensions
     public static void ConfigureRailwayPattern(this IServiceCollection services)
     {
         services.AddScoped<IRoleService, RoleService>();
+        services.AddScoped<IResourceService, ResourceService>();
     }
     
     
