@@ -4,4 +4,5 @@
 public class ActionInfoVm
 {
     public string ActionMethodName { get; set; }
+    public bool IsAllowed { get; set; }
 }

@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Northwind.Services.Railway;
 using Northwind.Services.Railway.Roles;
 using Northwind.ViewModels;
 
@@ -104,7 +103,13 @@ namespace Northwind.Controllers
                 ? RedirectToActionWithSuccess("Role deleted successfully.")
                 : RedirectToActionWithError(result.Error);
         }
-        
+
+        [HttpGet]
+        public IActionResult Manage(string id)
+        {
+            return RedirectToAction("Scopes", "Resources", new { id = id });
+        }
+
         private IActionResult RedirectToActionWithSuccess(string message)
         {
             TempData["SuccessMessage"] = message;
@@ -116,7 +121,7 @@ namespace Northwind.Controllers
             TempData["ErrorMessage"] = error;
             return RedirectToAction(nameof(Index));
         }
-        
+
         private IActionResult HandleUpdateFailure(string error, IdentityRole role)
         {
             ModelState.AddModelError("", error);
