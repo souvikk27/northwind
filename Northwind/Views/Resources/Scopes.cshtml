@@ -14,21 +14,22 @@
         </button>
     </div>
 
-    <form id="scopesForm" method="post" asp-action="SaveRolePermissions" asp-controller="Resources" class="space-y-6">
-        @foreach (var controller in Model)
+    <form id="scopesForm" method="post" class="space-y-6" asp-action="SaveRolePermissions" asp-controller="Resources">
+        @for (int i = 0; i < Model.Count(); i++)
         {
+            var controller = Model.ElementAt(i);
             <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300 ease-in-out transform hover:scale-105">
                 <h3 class="text-xl font-semibold text-gray-800 mb-4">@controller.Name</h3>
-                <input type="hidden" name="permissions[@controller.RoleId].RoleId" value="@controller.RoleId" />
                 <ul class="space-y-3">
-                    @foreach (var action in controller.ActionMethods)
+                    @for (int j = 0; j < controller.ActionMethods.Count(); j++)
                     {
+                        var action = controller.ActionMethods.ElementAt(j);
                         <li>
                             <label class="flex items-center space-x-3 cursor-pointer">
-                                <input type="hidden" name="permissions[@controller.RoleId].ControllerName" value="@controller.Name" />
-                                <input type="hidden" name="permissions[@controller.RoleId].ActionMethodName" value="@action.ActionMethodName" />
-                                <input type="checkbox" name="permissions[@controller.RoleId].IsAllowed" value="true" @(action.IsAllowed ? "checked" : "") class="form-checkbox h-5 w-5 text-blue-600 rounded focus:ring-blue-500">
-                                <input type="hidden" name="permissions[@controller.RoleId].IsAllowed" value="false" />
+                                <input type="hidden" name="permissions[@i].RoleId" value="@controller.RoleId" />
+                                <input type="hidden" name="permissions[@i].ControllerName" value="@controller.Name"/>
+                                <input type="hidden" name="permissions[@i].ActionMethodName" value="@action.ActionMethodName"/>
+                                <input type="checkbox" name="permissions[@i].IsAllowed" value="true" @(action.IsAllowed ? "checked" : "") class="form-checkbox h-5 w-5 text-blue-600 rounded focus:ring-blue-500">
                                 <span class="text-gray-700 font-medium">@action.ActionMethodName</span>
                             </label>
                         </li>
