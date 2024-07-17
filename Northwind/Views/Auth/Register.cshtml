@@ -1,5 +1,55 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@{
+    ViewData["Title"] = "Register";
 }
+<div class="flex items-center justify-center bg-gray-100 px-4 py-12 sm:px-6 lg:px-8">
+    <div class="w-full max-w-screen-lg space-y-8 rounded-xl bg-white p-10 shadow-lg">
+        <div>
+            <h2 class="mt-6 text-center text-3xl font-bold text-gray-900">
+                Create your account
+            </h2>
+        </div>
+        <form class="mt-8 space-y-6" action="#" method="POST">
+            <div class="grid-cols-1 grid gap-6 sm:grid-cols-2">
+                <div class="relative">
+                    <label for="first-name" class="sr-only">First Name</label>
+                    <input id="first-name" name="first-name" type="text" required class="relative block w-full appearance-none rounded-lg border border-gray-300 py-2 pl-10 pr-3 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="First Name">
+                </div>
+                <div class="relative">
+                    <label for="last-name" class="sr-only">Last Name</label>
+                    <input id="last-name" name="last-name" type="text" required class="relative block w-full appearance-none rounded-lg border border-gray-300 py-2 pl-10 pr-3 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Last Name">
+                </div>
+                <div class="relative">
+                    <label for="username" class="sr-only">Username</label>
+                    <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                        <i class="fa fa-user-tag text-gray-400"></i>
+                    </div>
+                    <input id="username" name="username" type="text" required class="relative block w-full appearance-none rounded-lg border border-gray-300 py-2 pl-10 pr-3 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Username">
+                </div>
+                <div class="relative">
+                    <label for="email" class="sr-only">Email address</label>
+                    <input id="email" name="email" type="email" autocomplete="email" required class="relative block w-full appearance-none rounded-lg border border-gray-300 py-2 pl-10 pr-3 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Email address">
+                </div>
+            </div>
+            <div class="space-y-6">
+                <div class="relative">
+                    <label for="password" class="sr-only">Password</label>
+                    <input id="password" name="password" type="password" autocomplete="new-password" required class="relative block w-full appearance-none rounded-lg border border-gray-300 py-2 pl-10 pr-3 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Password">
+                </div>
+                <div class="relative">
+                    <label for="confirm-password" class="sr-only">Confirm Password</label>
+                    <input id="confirm-password" name="confirm-password" type="password" autocomplete="new-password" required class="relative block w-full appearance-none rounded-lg border border-gray-300 py-2 pl-10 pr-3 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Confirm Password">
+                </div>
+            </div>
+            <div>
+                <button type="submit" class="group relative flex w-full justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    Sign Up
+                </button>
+            </div>
+        </form>
+        <div class="text-center text-sm">
+            <a class="font-medium text-indigo-600 hover:text-indigo-500" asp-action="Login">
+                Already have an account? Sign in
+            </a>
+        </div>
+    </div>
+</div>
