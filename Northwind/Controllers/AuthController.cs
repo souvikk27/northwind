@@ -33,21 +33,21 @@ namespace Northwind.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Login(string username, string password)
+        public async Task<IActionResult> Login(LoginVm model)
         {
             if (ModelState.IsValid)
             {
-                var result =
-                    await _signInManager.PasswordSignInAsync(username, password, false, lockoutOnFailure: false);
+                var result = await _signInManager.PasswordSignInAsync(model.Username, model.Password, false,
+                    lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
                     return RedirectToAction("Index", "Home");
                 }
 
-                ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                TempData["ErrorMessage"] = "Invalid login attempt. Please try again with valid credentials.";
             }
 
-            return View();
+            return View(model);
         }
 
         [HttpGet]
@@ -64,7 +64,8 @@ namespace Northwind.Controllers
                 var user = new ApplicationUser
                 {
                     UserName = registerVm.UserName, Email = registerVm.Email, FirstName = registerVm.FirstName,
-                    LastName = registerVm.LastName
+                    LastName = registerVm.LastName,
+                    EmailConfirmed = true
                 };
                 var result = await _userManager.CreateAsync(user, registerVm.Password);
                 if (result.Succeeded)
@@ -76,6 +77,7 @@ namespace Northwind.Controllers
                 foreach (var error in result.Errors)
                 {
                     ModelState.AddModelError(string.Empty, error.Description);
+                    TempData["ErrorMessage"] = error.Description;
                 }
             }
 
