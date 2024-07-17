@@ -61,12 +61,13 @@ namespace Northwind.Services.Railway.Resource
                 return Result<bool>.Failure("No permissions provided.");
             }
 
-            var results = await Task.WhenAll(permissions.Select(ProcessPermission));
-
-            if (results.Any(r => !r.IsSuccess))
+            foreach (var permission in permissions)
             {
-                var errors = string.Join(", ", results.Where(r => !r.IsSuccess).Select(r => r.Error));
-                return Result<bool>.Failure($"Errors occurred: {errors}");
+                var result = await ProcessPermission(permission);
+                if (!result.IsSuccess)
+                {
+                    return Result<bool>.Failure($"Error processing permission: {result.Error}");
+                }
             }
 
             return Result<bool>.Success(true);
@@ -81,18 +82,15 @@ namespace Northwind.Services.Railway.Resource
             }
 
             var role = roleResult.Value;
-            var claims = await _roleManager.GetClaimsAsync(role);
 
             foreach (var action in permission.Actions)
             {
+                var claims = await _roleManager.GetClaimsAsync(role);
                 var result = await ProcessAction(role, claims, permission.ControllerName, action);
                 if (!result.IsSuccess)
                 {
                     return result;
                 }
-
-                // Refresh claims after each action to avoid concurrency issues
-                claims = await _roleManager.GetClaimsAsync(role);
             }
             return Result<bool>.Success(true);
         }
