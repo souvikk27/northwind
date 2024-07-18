@@ -42,28 +42,21 @@ public static class ServiceExtensions
                 .Where(type => typeof(ControllerBase).IsAssignableFrom(type))
                 .ToList();
 
-            foreach (var controller in controllers)
+            foreach (var policyName in from controller in controllers
+                     let controllerName = controller.Name.Replace("Controller", "")
+                     let actions = controller.GetMethods(BindingFlags.Public | BindingFlags.Instance)
+                         .Where(m =>
+                             (typeof(IActionResult).IsAssignableFrom(m.ReturnType) ||
+                              typeof(Task<IActionResult>).IsAssignableFrom(m.ReturnType)) &&
+                             m.DeclaringType == controller)
+                         .Select(m => m.Name)
+                         .ToList()
+                     from action in actions
+                     let actionName = action
+                     select $"{controllerName}-{actionName}")
             {
-                var controllerName = controller.Name.Replace("Controller", "");
-
-                // Get all public action methods of the controller
-                var actions = controller.GetMethods(BindingFlags.Public | BindingFlags.Instance)
-                    .Where(m =>
-                        (typeof(IActionResult).IsAssignableFrom(m.ReturnType) ||
-                         typeof(Task<IActionResult>).IsAssignableFrom(m.ReturnType)) &&
-                        m.DeclaringType == controller)
-                    .Select(m => m.Name)
-                    .ToList();
-
-                //Iterate through action name and set according to criteria
-                foreach (var action in actions)
-                {
-                    var actionName = action;
-                    var policyName = $"{controllerName}-{actionName}";
-
-                    options.AddPolicy(policyName, policy =>
-                        policy.RequireClaim("Permission", policyName));
-                }
+                options.AddPolicy(policyName, policy =>
+                    policy.RequireClaim("Permission", policyName));
             }
 
             options.AddPolicy("RoleResourcePolicy", policy =>
