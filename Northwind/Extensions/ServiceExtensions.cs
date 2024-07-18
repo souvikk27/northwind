@@ -65,8 +65,20 @@ public static class ServiceExtensions
                         policy.RequireClaim("Permission", policyName));
                 }
             }
+
+            options.AddPolicy("RoleResourcePolicy", policy =>
+            {
+                policy.RequireAssertion(context =>
+                    context.Requirements.Any(r =>
+                        context.User.HasClaim(c =>
+                            c is { Type: "Permission", Value: $"Roles-Manage" or $"Resources-Scopes" }
+                        )
+                    )
+                );
+            });
         });
 
         services.AddSingleton<IAuthorizationHandler, PermissionHandler>();
+        services.AddSingleton<IAuthorizationHandler, RoleResourceAuthRequirementHandler>();
     }
 }

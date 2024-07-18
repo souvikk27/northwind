@@ -22,7 +22,7 @@ namespace Northwind.Controllers
         }
 
         [HttpGet]
-        [Authorize(Policy = "Roles-Manage,Resources-Scopes")]
+        [Authorize(Policy = "RoleResourcePolicy")]
         public async Task<IActionResult> Scopes(string id)
         {
             var result = await _resourceService.GetScopesResult(id);
