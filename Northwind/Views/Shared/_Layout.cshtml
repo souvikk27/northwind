@@ -31,15 +31,9 @@
                         </li>
                         <li class="relative hover:text-white md:px-4 md:py-2">
                             <button class="dropdown-toggle cursor-pointer" id="userManagementDropdown">User Management</button>
-                            <div class="dropdown-menu absolute mt-5 hidden w-48 rounded-lg bg-white shadow-md" id="userManagementMenu">
-                                <ul>
-                                    <li>
-                                        <a href="/Roles/Index" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Manage Roles</a>
-                                    </li>
-                                    <li>
-                                        <a href="/Users/Index" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Manage Users</a>
-                                    </li>
-                                </ul>
+                            <div class="dropdown-menu dropdown-menu-offset absolute hidden w-48 rounded-b-lg bg-gray-700 pb-2 text-white">
+                                <a asp-action="Index" asp-controller="Roles" class="block px-6 py-2 hover:bg-gray-800">Manage Roles</a>
+                                <a asp-action="Index" asp-controller="Users" class="block px-6 py-2 hover:bg-gray-800">Manage Users</a>
                             </div>
                         </li>
                         <li class="hover:text-white md:px-4 md:py-2">
@@ -87,17 +81,6 @@
     </div>
 </main>
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            // Toggle visibility of dropdown menu
-            var dropdownToggle = document.getElementById('userManagementDropdown');
-            var dropdownMenu = document.getElementById('userManagementMenu');
-
-            dropdownToggle.addEventListener('click', function () {
-                dropdownMenu.classList.toggle('hidden');
-            });
-        });
-    </script>
 <script src="~/js/site.js" asp-append-version="true"></script>
 @await RenderSectionAsync("Scripts", required: false)
 </body>

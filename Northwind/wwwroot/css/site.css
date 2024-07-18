@@ -11,3 +11,8 @@
     font-family: 'Metal Mania', sans-serif;
     font-weight: 400;
 }
+
+.dropdown-menu-offset {
+    z-index: 50;
+    pointer-events: auto;
+}
