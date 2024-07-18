@@ -70,6 +70,7 @@ namespace Northwind.Controllers
                 var result = await _userManager.CreateAsync(user, registerVm.Password);
                 if (result.Succeeded)
                 {
+                    await _userManager.AddToRoleAsync(user, "Supplier");
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     return RedirectToAction("Index", "Home");
                 }

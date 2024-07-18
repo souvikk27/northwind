@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Northwind.Services.Railway.Roles;
@@ -19,6 +20,7 @@ namespace Northwind.Controllers
         }
 
         [HttpGet]
+        [Authorize(policy: "Roles-Index")]
         public IActionResult Index(int page = 1, string searchString = "")
         {
             var rolesQuery = _roleManager.Roles.AsNoTracking();
@@ -50,12 +52,14 @@ namespace Northwind.Controllers
         }
 
         [HttpGet]
+        [Authorize(policy: "Roles-Create")]
         public IActionResult Create()
         {
             return View();
         }
 
         [HttpPost]
+        [Authorize(policy: "Roles-Create")]
         public async Task<IActionResult> Create(string rolename)
         {
             if (!ModelState.IsValid)
@@ -70,6 +74,7 @@ namespace Northwind.Controllers
         }
 
         [HttpGet]
+        [Authorize(policy: "Roles-Edit")]
         public async Task<IActionResult> Edit(string id)
         {
             var role = await _roleManager.FindByIdAsync(id);
@@ -82,6 +87,7 @@ namespace Northwind.Controllers
         }
 
         [HttpPost]
+        [Authorize(policy: "Roles-Edit")]
         public async Task<IActionResult> Edit(string id, [Bind("Id,Name")] IdentityRole role)
         {
             if (!ModelState.IsValid)
@@ -96,6 +102,7 @@ namespace Northwind.Controllers
         }
 
         [HttpDelete]
+        [Authorize(policy: "Roles-Delete")]
         public async Task<IActionResult> Delete(string id)
         {
             var result = await _roleService.DeleteRole(id);

@@ -12,7 +12,7 @@ namespace Northwind.Permissions
             // Check if the user has a permission claim for the controller and any of the actions
             if (requirement.ActionNames.Any(action => userClaims.Any(c => c.Type == "Permission" &&
                                                                           c.Value ==
-                                                                          $"{requirement.ControllerName}.{action}")))
+                                                                          $"{requirement.ControllerName}-{action}")))
             {
                 context.Succeed(requirement);
             }

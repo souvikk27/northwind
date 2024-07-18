@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Northwind.Context;
 using Northwind.ViewModels;
@@ -14,7 +15,7 @@ namespace Northwind.Controllers
         {
             _context = context;
         }
-        
+
         public IActionResult Index(int page = 1)
         {
             var totalCustomers = _context.Customers.Count();

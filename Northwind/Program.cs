@@ -6,6 +6,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.ConfigureDbContext(builder.Configuration);
 builder.Services.ConfigureIdentity();
 builder.Services.ConfigureRailwayPattern();
+builder.Services.ConfigureAuthorizationPolicy();
 
 var app = builder.Build();
 if (!app.Environment.IsDevelopment())

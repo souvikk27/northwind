@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Northwind.Services.Railway.Resource;
@@ -21,6 +22,7 @@ namespace Northwind.Controllers
         }
 
         [HttpGet]
+        [Authorize(Policy = "Roles-Manage,Resources-Scopes")]
         public async Task<IActionResult> Scopes(string id)
         {
             var result = await _resourceService.GetScopesResult(id);
@@ -30,6 +32,7 @@ namespace Northwind.Controllers
         }
 
         [HttpPost]
+        [Authorize(policy: "Resources-SaveRolePermissions")]
         public async Task<IActionResult> SaveRolePermissions(List<RolePermissionUpdateVm> permissions)
         {
             var result = await _resourceService.ValidateAndProcessPermissions(permissions);
