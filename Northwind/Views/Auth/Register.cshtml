@@ -3,62 +3,72 @@
     ViewData["Title"] = "Register";
 }
 
-<div class="flex items-center justify-center bg-gray-100 px-4 py-12 sm:px-6 lg:px-8">
-    <div class="w-full max-w-screen-lg space-y-8 rounded-xl bg-white p-10 shadow-lg">
-        <div>
-            <h2 class="mt-6 text-center text-3xl font-bold text-gray-900">
-                Create your account
-            </h2>
-        </div>
-        <form asp-action="Register" method="post" class="mt-8 space-y-6">
-            <div class="grid-cols-1 grid gap-6 sm:grid-cols-2">
-                <div class="relative">
-                    <label asp-for="FirstName" class="sr-only"></label>
-                    <input asp-for="FirstName" class="relative block w-full appearance-none rounded-lg border border-gray-300 py-2 pl-10 pr-3 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="First Name">
+<div class="font-[sans-serif]">
+    <div class="min-h-[160px] bg-gradient-to-r from-blue-800 to-blue-400 p-4 text-center sm:p-6">
+        <h4 class="text-2xl font-bold text-white sm:text-3xl">Create your free account</h4>
+    </div>
+
+    <div class="mx-4 -mt-16 mb-4">
+        <form asp-action="Register" method="post" class="shadow-[0_2px_13px_-6px_rgba(0,0,0,0.4)] mx-auto max-w-4xl rounded-md bg-white p-4 sm:p-8">
+            <div class="grid gap-8 md:grid-cols-2">
+                <button type="button"
+                        class="flex w-full items-center justify-center rounded-md border-none bg-gray-100 px-6 py-3 text-sm font-semibold tracking-wider text-gray-800 outline-none hover:bg-gray-200">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22px" fill="#fff" class="shrink-0 mr-4 inline" viewBox="0 0 512 512">
+                        <!-- Google SVG path data -->
+                    </svg>
+                    Continue with Google
+                </button>
+                <button type="button"
+                        class="flex w-full items-center justify-center rounded-md border-none bg-black px-6 py-3 text-sm font-semibold tracking-wider text-white outline-none hover:bg-[#333]">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22px" fill="#fff" class="shrink-0 mr-4 inline" viewBox="0 0 22.773 22.773">
+                        <!-- Apple SVG path data -->
+                    </svg>
+                    Continue with Apple
+                </button>
+            </div>
+
+            <div class="my-8 flex items-center before:mt-0.5 before:flex-1 before:border-t before:border-neutral-300 after:mt-0.5 after:flex-1 after:border-t after:border-neutral-300">
+                <p class="mx-4 text-center">Or</p>
+            </div>
+
+            <div class="grid gap-8 md:grid-cols-2">
+                <div>
+                    <label asp-for="FirstName" class="mb-2 block text-sm text-gray-800"></label>
+                    <input asp-for="FirstName" class="w-full rounded-md bg-gray-100 px-4 py-3 text-sm text-gray-800 outline-blue-500 transition-all focus:bg-transparent" placeholder="Enter first name" />
                     <span asp-validation-for="FirstName" class="text-sm text-red-500"></span>
                 </div>
-                <div class="relative">
-                    <label asp-for="LastName" class="sr-only"></label>
-                    <input asp-for="LastName" class="relative block w-full appearance-none rounded-lg border border-gray-300 py-2 pl-10 pr-3 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Last Name">
+                <div>
+                    <label asp-for="LastName" class="mb-2 block text-sm text-gray-800"></label>
+                    <input asp-for="LastName" class="w-full rounded-md bg-gray-100 px-4 py-3 text-sm text-gray-800 outline-blue-500 transition-all focus:bg-transparent" placeholder="Enter last name" />
                     <span asp-validation-for="LastName" class="text-sm text-red-500"></span>
                 </div>
-                <div class="relative">
-                    <label asp-for="UserName" class="sr-only"></label>
-                    <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                        <i class="fa fa-user-tag text-gray-400"></i>
-                    </div>
-                    <input asp-for="UserName" class="relative block w-full appearance-none rounded-lg border border-gray-300 py-2 pl-10 pr-3 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Username">
-                    <span asp-validation-for="UserName" class="text-sm text-red-500"></span>
-                </div>
-                <div class="relative">
-                    <label asp-for="Email" class="sr-only"></label>
-                    <input asp-for="Email" type="email" autocomplete="email" class="relative block w-full appearance-none rounded-lg border border-gray-300 py-2 pl-10 pr-3 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Email address">
+                <div>
+                    <label asp-for="Email" class="mb-2 block text-sm text-gray-800"></label>
+                    <input asp-for="Email" class="w-full rounded-md bg-gray-100 px-4 py-3 text-sm text-gray-800 outline-blue-500 transition-all focus:bg-transparent" placeholder="Enter email" />
                     <span asp-validation-for="Email" class="text-sm text-red-500"></span>
                 </div>
-            </div>
-            <div class="space-y-6">
-                <div class="relative">
-                    <label asp-for="Password" class="sr-only"></label>
-                    <input asp-for="Password" type="password" autocomplete="new-password" class="relative block w-full appearance-none rounded-lg border border-gray-300 py-2 pl-10 pr-3 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Password">
+                <div>
+                    <label asp-for="UserName" class="mb-2 block text-sm text-gray-800"></label>
+                    <input asp-for="UserName" class="w-full rounded-md bg-gray-100 px-4 py-3 text-sm text-gray-800 outline-blue-500 transition-all focus:bg-transparent" placeholder="Enter username" />
+                    <span asp-validation-for="UserName" class="text-sm text-red-500"></span>
+                </div>
+                <div>
+                    <label asp-for="Password" class="mb-2 block text-sm text-gray-800"></label>
+                    <input asp-for="Password" type="password" class="w-full rounded-md bg-gray-100 px-4 py-3 text-sm text-gray-800 outline-blue-500 transition-all focus:bg-transparent" placeholder="Enter password" />
                     <span asp-validation-for="Password" class="text-sm text-red-500"></span>
                 </div>
-                <div class="relative">
-                    <label asp-for="ConfirmPassword" class="sr-only"></label>
-                    <input asp-for="ConfirmPassword" type="password" autocomplete="new-password" class="relative block w-full appearance-none rounded-lg border border-gray-300 py-2 pl-10 pr-3 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Confirm Password">
+                <div>
+                    <label asp-for="ConfirmPassword" class="mb-2 block text-sm text-gray-800"></label>
+                    <input asp-for="ConfirmPassword" type="password" class="w-full rounded-md bg-gray-100 px-4 py-3 text-sm text-gray-800 outline-blue-500 transition-all focus:bg-transparent" placeholder="Confirm password" />
                     <span asp-validation-for="ConfirmPassword" class="text-sm text-red-500"></span>
                 </div>
             </div>
-            <div>
-                <button type="submit" class="group relative flex w-full justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                    Sign Up
+            <div class="mt-8">
+                <button type="submit" class="rounded-md bg-blue-500 px-6 py-3 text-sm font-semibold tracking-wider text-white hover:bg-blue-600 focus:outline-none">
+                    Sign up
                 </button>
             </div>
         </form>
-        <div class="text-center text-sm">
-            <a class="font-medium text-indigo-600 hover:text-indigo-500" asp-action="Login">
-                Already have an account? Sign in
-            </a>
-        </div>
     </div>
 </div>
 
