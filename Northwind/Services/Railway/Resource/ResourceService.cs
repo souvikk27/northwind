@@ -109,21 +109,6 @@ namespace Northwind.Services.Railway.Resource
             return Result<IList<Claim>>.Success(claims);
         }
 
-        private async Task<Result<bool>> ProcessActions(IdentityRole role, IList<Claim> claims, string controllerName,
-            IEnumerable<ActionPermission> actions)
-        {
-            var results =
-                await Task.WhenAll(actions.Select(action => ProcessAction(role, claims, controllerName, action)));
-
-            if (results.Any(r => !r.IsSuccess))
-            {
-                var errors = string.Join(", ", results.Where(r => !r.IsSuccess).Select(r => r.Error));
-                return Result<bool>.Failure($"Errors occurred while processing actions: {errors}");
-            }
-
-            return Result<bool>.Success(true);
-        }
-
         private async Task<Result<bool>> ProcessAction(IdentityRole role, IEnumerable<Claim> claims,
             string controllerName,
             ActionPermission action)
@@ -154,5 +139,22 @@ namespace Northwind.Services.Railway.Resource
                 ? Result<bool>.Success(true)
                 : Result<bool>.Failure($"Failed to remove claim {claim.Value} from role {role.Name}");
         }
+
+        #region Unused Methods might be used later?
+        private async Task<Result<bool>> ProcessActions(IdentityRole role, IList<Claim> claims, string controllerName,
+            IEnumerable<ActionPermission> actions)
+        {
+            var results =
+                await Task.WhenAll(actions.Select(action => ProcessAction(role, claims, controllerName, action)));
+
+            if (results.Any(r => !r.IsSuccess))
+            {
+                var errors = string.Join(", ", results.Where(r => !r.IsSuccess).Select(r => r.Error));
+                return Result<bool>.Failure($"Errors occurred while processing actions: {errors}");
+            }
+
+            return Result<bool>.Success(true);
+        }
+        #endregion
     }
 }

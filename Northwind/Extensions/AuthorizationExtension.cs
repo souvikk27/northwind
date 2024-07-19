@@ -9,6 +9,12 @@ public static class AuthorizationExtension
 {
     public static void ConfigureAuthorizationPolicy(this IServiceCollection services)
     {
+        GLobalAuthorizationPolicyRegistration(services);
+        RoleResourceAuthPolicyRegistration(services);
+    }
+
+    private static void GLobalAuthorizationPolicyRegistration(IServiceCollection services)
+    {
         services.AddAuthorization(options =>
         {
             // Get all controller types in the assembly
@@ -32,7 +38,14 @@ public static class AuthorizationExtension
                 options.AddPolicy(policyName, policy =>
                     policy.RequireClaim("Permission", policyName));
             }
+        });
+        services.AddSingleton<IAuthorizationHandler, PermissionHandler>();
+    }
 
+    private static void RoleResourceAuthPolicyRegistration(IServiceCollection services)
+    {
+        services.AddAuthorization(options =>
+        {
             options.AddPolicy("RoleResourcePolicy", policy =>
             {
                 policy.RequireAssertion(context =>
@@ -44,8 +57,6 @@ public static class AuthorizationExtension
                 );
             });
         });
-
-        services.AddSingleton<IAuthorizationHandler, PermissionHandler>();
         services.AddSingleton<IAuthorizationHandler, RoleResourceAuthRequirementHandler>();
     }
 }
