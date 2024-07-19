@@ -11,7 +11,7 @@
 <body>
 <header class='min-h-[70px] relative z-50 flex border-b bg-white font-sans tracking-wide'>
     <div class='flex w-full flex-wrap items-center justify-between gap-4 px-10 py-3'>
-        <a href="javascript:void(0)">
+        <a href="@Url.Action("Index", "Home")">
             <img src="~/images/logo1.png" alt="logo" class='w-36'/>
         </a>
         <div id="collapseMenu"
@@ -160,9 +160,11 @@
                         </path>
                     </svg>
                 </button>
-                <a asp-action="Logout" asp-controller="Auth" class='border-2 border-[#007bff] bg-[#007bff] rounded-full px-4 py-2 text-sm font-bold text-white transition-all duration-300 ease-in-out hover:bg-transparent hover:text-[#007bff]'>
-                    Log out
-                </a>
+                <form asp-action="Logout" asp-controller="Auth" method="post">
+                    <button type="submit" class='border-2 border-[#007bff] bg-[#007bff] rounded-full px-4 py-2 text-sm font-bold text-white transition-all duration-300 ease-in-out hover:bg-transparent hover:text-[#007bff]'>
+                        Log out
+                    </button>
+                </form>
             }
             else
             {

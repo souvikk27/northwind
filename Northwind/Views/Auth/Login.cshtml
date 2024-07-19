@@ -2,67 +2,62 @@
     ViewData["Title"] = "Login";
 }
 
-<partial name="_SuccessNotification" />
-<partial name="_ErrorNotification" />
+<partial name="_SuccessNotification"/>
+<partial name="_ErrorNotification"/>
 
-<div class="m-auto mx-auto w-full max-w-sm rounded-lg bg-white p-6 shadow-md">
-    <form asp-action="Login" asp-controller="Auth" method="post" class="mt-6">
-        <div>
-            <label for="username" class="block text-sm text-gray-800">Username</label>
-            <input id="username" name="username" type="text"
-                   class="mt-2 block w-full rounded-lg border bg-white px-4 py-2 text-gray-700 focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"/>
-        </div>
+<div class="font-[sans-serif]">
+    <div class="flex flex-col items-center justify-center px-4 py-4">
+        <div class="w-full max-w-md">
+            <a href="@Url.Action("Index", "Home")">
+                <img src="~/images/logo3.png" alt="logo" class='mx-auto mb-8 block w-40'/>
+            </a>
 
-        <div class="mt-4">
-            <div class="flex items-center justify-between">
-                <label for="password" class="block text-sm text-gray-800">Password</label>
-                <a href="#" class="text-xs text-gray-600 hover:underline">Forgot Password?</a>
+            <div class="rounded-2xl bg-white p-8 shadow">
+                <h2 class="text-center text-2xl font-bold text-gray-800">Sign in</h2>
+                <form asp-action="Login" asp-controller="Auth" method="post" class="mt-8 space-y-4">
+                    <div>
+                        <label for="username" class="mb-2 block text-sm text-gray-800">User name</label>
+                        <div class="relative flex items-center">
+                            <input name="username" name="username" type="text" class="w-full rounded-md border border-gray-300 px-4 py-3 text-sm text-gray-800 outline-blue-600" placeholder="Enter user name"/>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="#bbb" stroke="#bbb" class="absolute right-4 h-4 w-4" viewBox="0 0 24 24">
+                                <circle cx="10" cy="7" r="6" data-original="#000000"></circle>
+                                <path d="M14 15H6a5 5 0 0 0-5 5 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 5 5 0 0 0-5-5zm8-4h-2.59l.3-.29a1 1 0 0 0-1.42-1.42l-2 2a1 1 0 0 0 0 1.42l2 2a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42l-.3-.29H22a1 1 0 0 0 0-2z" data-original="#000000"></path>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="mb-2 block text-sm text-gray-800">Password</label>
+                        <div class="relative flex items-center">
+                            <input id="password" name="password" type="password" class="w-full rounded-md border border-gray-300 px-4 py-3 text-sm text-gray-800 outline-blue-600" placeholder="Enter password"/>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="#bbb" stroke="#bbb" class="absolute right-4 h-4 w-4 cursor-pointer" viewBox="0 0 128 128">
+                                <path d="M64 104C22.127 104 1.367 67.496.504 65.943a4 4 0 0 1 0-3.887C1.367 60.504 22.127 24 64 24s62.633 36.504 63.496 38.057a4 4 0 0 1 0 3.887C126.633 67.496 105.873 104 64 104zM8.707 63.994C13.465 71.205 32.146 96 64 96c31.955 0 50.553-24.775 55.293-31.994C114.535 56.795 95.854 32 64 32 32.045 32 13.447 56.775 8.707 63.994zM64 88c-13.234 0-24-10.766-24-24s10.766-24 24-24 24 10.766 24 24-10.766 24-24 24zm0-40c-8.822 0-16 7.178-16 16s7.178 16 16 16 16-7.178 16-16-7.178-16-16-16z" data-original="#000000"></path>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-wrap items-center justify-between gap-4">
+                        <div class="flex items-center">
+                            <input id="remember-me" name="remember-me" type="checkbox" class="shrink-0 h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"/>
+                            <label for="remember-me" class="ml-3 block text-sm text-gray-800">
+                                Remember me
+                            </label>
+                        </div>
+                        <div class="text-sm">
+                            <a href="jajvascript:void(0);" class="font-semibold text-blue-600 hover:underline">
+                                Forgot your password?
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="!mt-8">
+                        <button type="submit" class="w-full rounded-lg bg-blue-600 px-4 py-3 text-sm tracking-wide text-white hover:bg-blue-700 focus:outline-none">
+                            Sign in
+                        </button>
+                    </div>
+                    <p class="!mt-8 text-center text-sm text-gray-800">Don't have an account? <a href="@Url.Action("Register")" class="ml-1 whitespace-nowrap font-semibold text-blue-600 hover:underline">Register here</a></p>
+                </form>
             </div>
-
-            <input id="password" name="password" type="password"
-                   class="mt-2 block w-full rounded-lg border bg-white px-4 py-2 text-gray-700 focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"/>
         </div>
-
-        <div class="mt-6">
-            <button type="submit"
-                    class="w-full transform rounded-lg bg-gray-800 px-6 py-2.5 text-sm font-medium capitalize tracking-wide text-white transition-colors duration-300 hover:bg-gray-700 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-50">
-                Sign In
-            </button>
-        </div>
-    </form>
-
-    <div class="mt-4 flex items-center justify-between">
-        <span class="w-1/5 border-b lg:w-1/5"></span>
-
-        <a href="#" class="text-center text-xs uppercase text-gray-500 hover:underline">
-            or login with Social Media
-        </a>
-
-        <span class="w-1/5 border-b lg:w-1/5"></span>
     </div>
-
-    <div class="-mx-2 mt-6 flex items-center">
-        <button type="button"
-                class="mx-2 flex w-full transform items-center justify-center rounded-lg bg-blue-500 px-6 py-2 text-sm font-medium text-white transition-colors duration-300 hover:bg-blue-400 focus:bg-blue-400 focus:outline-none">
-            <svg class="mx-2 h-4 w-4 fill-current" viewBox="0 0 24 24">
-                <path d="M12.24 10.285V14.4h6.806c-.275 1.765-2.056 5.174-6.806 5.174-4.095 0-7.439-3.389-7.439-7.574s3.345-7.574 7.439-7.574c2.33 0 3.891.989 4.785 1.849l3.254-3.138C18.189 1.186 15.479 0 12.24 0c-6.635 0-12 5.365-12 12s5.365 12 12 12c6.926 0 11.52-4.869 11.52-11.726 0-.788-.085-1.39-.189-1.989H12.24z">
-                </path>
-            </svg>
-
-            <span class="mx-2 hidden sm:inline">Sign in with Google</span>
-        </button>
-
-        <a href="#"
-           class="mx-2 transform rounded-lg bg-gray-300 p-2 text-sm font-medium text-gray-500 transition-colors duration-300 hover:bg-gray-200">
-            <svg class="h-5 w-5 fill-current" viewBox="0 0 24 24">
-                <path d="M23.954 4.569c-.885.389-1.83.654-2.825.775 1.014-.611 1.794-1.574 2.163-2.723-.951.555-2.005.959-3.127 1.184-.896-.959-2.173-1.559-3.591-1.559-2.717 0-4.92 2.203-4.92 4.917 0 .39.045.765.127 1.124C7.691 8.094 4.066 6.13 1.64 3.161c-.427.722-.666 1.561-.666 2.475 0 1.71.87 3.213 2.188 4.096-.807-.026-1.566-.248-2.228-.616v.061c0 2.385 1.693 4.374 3.946 4.827-.413.111-.849.171-1.296.171-.314 0-.615-.03-.916-.086.631 1.953 2.445 3.377 4.604 3.417-1.68 1.319-3.809 2.105-6.102 2.105-.39 0-.779-.023-1.17-.067 2.189 1.394 4.768 2.209 7.557 2.209 9.054 0 13.999-7.496 13.999-13.986 0-.209 0-.42-.015-.63.961-.689 1.8-1.56 2.46-2.548l-.047-.02z">
-                </path>
-            </svg>
-        </a>
-    </div>
-
-    <p class="mt-8 text-center text-xs font-light text-gray-400">
-        Don't have an account?
-        <a href="@Url.Action("Register", "Auth")" class="font-medium text-gray-700 hover:underline">Create One</a>
-    </p>
 </div>
