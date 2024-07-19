@@ -9,77 +9,285 @@
     <link rel="stylesheet" href="~/lib/font-awesome/css/all.css"/>
 </head>
 <body>
-<header>
-    <!-- component -->
-    <nav class="w-100 bg-indigo-500 px-8 shadow shadow-gray-300 md:px-auto">
-        <div class="container mx-auto flex h-28 flex-wrap items-center justify-between md:h-16 md:px-4 md:flex-nowrap">
-            <!-- Logo -->
-            <div class="text-white md:order-1">
-                <a class="metal-mania text-3xl" asp-action="Index" asp-controller="Home">Northwind</a>
-            </div>
-            @if (User.Identity is {IsAuthenticated: true })
-            {
-                <div class="order-3 w-full text-gray-200 md:w-auto md:order-2">
-                    <ul class="flex justify-between font-semibold">
-                        <!-- Active Link = text-indigo-500
-                        Inactive Link = hover:text-indigo-500 -->
-                        <li class="text-white md:px-4 md:py-2">
-                            <a href="#">Dashboard</a>
-                        </li>
-                        <li class="hover:text-white md:px-4 md:py-2">
-                            <a asp-action="Index" asp-controller="Customers">Customers</a>
-                        </li>
-                        <li class="relative hover:text-white md:px-4 md:py-2">
-                            <button class="dropdown-toggle cursor-pointer" id="userManagementDropdown">User Management</button>
-                            <div class="dropdown-menu dropdown-menu-offset absolute hidden w-48 rounded-b-lg bg-gray-700 pb-2 text-white">
-                                <a asp-action="Index" asp-controller="Roles" class="block px-6 py-2 hover:bg-gray-800">Manage Roles</a>
-                                <a asp-action="Index" asp-controller="Users" class="block px-6 py-2 hover:bg-gray-800">Manage Users</a>
-                            </div>
-                        </li>
-                        <li class="hover:text-white md:px-4 md:py-2">
-                            <a href="#">About</a>
-                        </li>
-                        <li class="hover:text-white md:px-4 md:py-2">
-                            <a href="#">Contact</a>
-                        </li>
-                    </ul>
-                </div>
-            }
-            <div class="order-2 md:order-3">
-                @if (User.Identity is {IsAuthenticated: true })
+<header class='min-h-[70px] relative z-50 flex border-b bg-white font-sans tracking-wide'>
+    <div class='flex w-full flex-wrap items-center justify-between gap-4 px-10 py-3'>
+        <a href="javascript:void(0)">
+            <img src="/images/logo1.png" alt="logo" class='w-36'/>
+        </a>
+        <div id="collapseMenu"
+             class='lg:!block max-lg:hidden max-lg:before:fixed max-lg:before:bg-black max-lg:before:opacity-50 max-lg:before:inset-0 max-lg:before:z-50'>
+            <button id="toggleClose" class='z-[100] fixed right-4 top-2 rounded-full bg-white p-3 lg:hidden'>
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 fill-black" viewBox="0 0 320.591 320.591">
+                    <path d="M30.391 318.583a30.37 30.37 0 0 1-21.56-7.288c-11.774-11.844-11.774-30.973 0-42.817L266.643 10.665c12.246-11.459 31.462-10.822 42.921 1.424 10.362 11.074 10.966 28.095 1.414 39.875L51.647 311.295a30.366 30.366 0 0 1-21.256 7.288z"
+                          data-original="#000000">
+                    </path>
+                    <path d="M287.9 318.583a30.37 30.37 0 0 1-21.257-8.806L8.83 51.963C-2.078 39.225-.595 20.055 12.143 9.146c11.369-9.736 28.136-9.736 39.504 0l259.331 257.813c12.243 11.462 12.876 30.679 1.414 42.922-.456.487-.927.958-1.414 1.414a30.368 30.368 0 0 1-23.078 7.288z"
+                          data-original="#000000">
+                    </path>
+                </svg>
+            </button>
+
+            <ul class='z-50 lg:flex lg:gap-x-10 max-lg:space-y-3 max-lg:fixed max-lg:bg-white max-lg:w-1/2 max-lg:min-w-[300px] max-lg:top-0 max-lg:left-0 max-lg:p-6 max-lg:h-full max-lg:shadow-md max-lg:overflow-auto'>
+                <li class='mb-6 hidden max-lg:block'>
+                    <a href="javascript:void(0)">
+                        <img src="https://readymadeui.com/readymadeui.svg" alt="logo" class='w-36'/>
+                    </a>
+                </li>
+                <li class='max-lg:border-b max-lg:py-3'>
+                    <a href='javascript:void(0)'
+                       class='text-[15px] block font-bold text-blue-600 hover:text-blue-600'>
+                        Home
+                    </a>
+                </li>
+                @if (User.Identity is { IsAuthenticated: true })
                 {
-                    <form method="post" asp-action="Logout" asp-controller="Auth">
-                        <button type="submit" class="flex items-center gap-2 rounded-xl bg-gray-100 px-4 py-2 text-indigo-500 hover:bg-white">
-                            <!-- Heroicons - Logout Solid -->
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                <path fill-rule="evenodd" d="M10 4.586L6.707 7.879a1 1 0 11-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 11-1.414 1.414L10 4.586zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"/>
-                                <path fill-rule="evenodd" d="M4.293 14.293a1 1 0 011.414-1.414L10 16.586l4.293-4.707a1 1 0 111.414 1.414l-5 5a1 1 0 01-1.414 0l-5-5z" clip-rule="evenodd"/>
+                    <li class='group relative max-lg:border-b max-lg:py-3'>
+                        <a href='javascript:void(0)'
+                           class='text-[15px] block font-bold text-gray-600 hover:text-[#007bff] lg:hover:fill-[#007bff]'>
+                            User Management
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" class="ml-1 inline-block"
+                                 viewBox="0 0 24 24">
+                                <path d="M12 16a1 1 0 0 1-.71-.29l-6-6a1 1 0 0 1 1.42-1.42l5.29 5.3 5.29-5.29a1 1 0 0 1 1.41 1.41l-6 6a1 1 0 0 1-.7.29z"
+                                      data-name="16" data-original="#000000"/>
                             </svg>
-                            <span>Logout</span>
-                        </button>
-                    </form>
-                }
-                else
-                {
-                    <form method="get" asp-action="Login" asp-controller="Auth">
-                        <button type="submit" class="flex items-center gap-2 rounded-xl bg-gray-100 px-4 py-2 text-indigo-500 hover:bg-white">
-                            <!-- Heroicons - Login Solid -->
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                <path fill-rule="evenodd" d="M3 3a1 1 0 011 1v12a1 1 0 11-2 0V4a1 1 0 011-1zm7.707 3.293a1 1 0 010 1.414L9.414 9H17a1 1 0 110 2H9.414l1.293 1.293a1 1 0 01-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                        </a>
+                        <ul class='min-w-[250px] absolute -left-6 z-50 max-h-0 space-y-3 overflow-hidden bg-white px-6 shadow-lg transition-all duration-500 lg:top-5 max-lg:top-8 group-hover:opacity-100 group-hover:max-h-[700px] group-hover:pb-4 group-hover:pt-6'>
+                            <li class='border-b py-2'>
+                                <a href='@Url.Action("Index", "Users")'
+                                   class='text-[15px] block font-bold text-gray-600 hover:text-[#007bff]'>
+                                    Users
+                                </a>
+                            </li>
+                            <li class='border-b py-2'>
+                                <a href='@Url.Action("Index", "Roles")'
+                                   class='text-[15px] block font-bold text-gray-600 hover:text-[#007bff]'>
+                                    Roles
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class='group relative max-lg:border-b max-lg:py-3'>
+                        <a href='javascript:void(0)'
+                           class='text-[15px] block font-bold text-gray-600 hover:text-[#007bff] lg:hover:fill-[#007bff]'>
+                            Blog
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" class="ml-1 inline-block"
+                                 viewBox="0 0 24 24">
+                                <path d="M12 16a1 1 0 0 1-.71-.29l-6-6a1 1 0 0 1 1.42-1.42l5.29 5.3 5.29-5.29a1 1 0 0 1 1.41 1.41l-6 6a1 1 0 0 1-.7.29z"
+                                      data-name="16" data-original="#000000"/>
                             </svg>
-                            <span>Login</span>
-                        </button>
-                    </form>
+                        </a>
+                        <ul class='min-w-[250px] absolute -left-6 z-50 max-h-0 space-y-3 overflow-hidden bg-white px-6 shadow-lg transition-all duration-500 lg:top-5 max-lg:top-8 group-hover:opacity-100 group-hover:max-h-[700px] group-hover:pb-4 group-hover:pt-6'>
+                            <li class='border-b py-2'>
+                                <a href='javascript:void(0)'
+                                   class='text-[15px] block font-bold text-gray-600 hover:text-[#007bff]'>
+                                    Foods
+                                </a>
+                            </li>
+                            <li class='border-b py-2'>
+                                <a href='javascript:void(0)'
+                                   class='text-[15px] block font-bold text-gray-600 hover:text-[#007bff]'>
+                                    Sale
+                                </a>
+                            </li>
+                            <li class='border-b py-2'>
+                                <a href='javascript:void(0)'
+                                   class='text-[15px] block font-bold text-gray-600 hover:text-[#007bff]'>
+                                    Marketing
+                                </a>
+                            </li>
+                            <li class='border-b py-2'>
+                                <a href='javascript:void(0)'
+                                   class='text-[15px] block font-bold text-gray-600 hover:text-[#007bff]'>
+                                    Investment
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
                 }
-            </div>
+                <li class='max-lg:border-b max-lg:py-3'>
+                    <a href='javascript:void(0)'
+                       class='text-[15px] block font-bold text-gray-600 hover:text-[#007bff]'>
+                        Team
+                    </a>
+                </li>
+                <li class='max-lg:border-b max-lg:py-3'>
+                    <a href='javascript:void(0)'
+                       class='text-[15px] block font-bold text-gray-600 hover:text-[#007bff]'>
+                        About
+                    </a>
+                </li>
+                <li class='max-lg:border-b max-lg:py-3'>
+                    <a href='javascript:void(0)'
+                       class='text-[15px] block font-bold text-gray-600 hover:text-[#007bff]'>
+                        Contact
+                    </a>
+                </li>
+            </ul>
         </div>
-    </nav>
+
+        <div class='flex items-center space-x-8 max-lg:ml-auto'>
+            @if (User.Identity is { IsAuthenticated: true })
+            {
+                <span class="relative">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20px"
+                         class="fill-[#333] inline cursor-pointer hover:fill-[#007bff]" viewBox="0 0 64 64">
+                        <path d="M45.5 4A18.53 18.53 0 0 0 32 9.86 18.5 18.5 0 0 0 0 22.5C0 40.92 29.71 59 31 59.71a2 2 0 0 0 2.06 0C34.29 59 64 40.92 64 22.5A18.52 18.52 0 0 0 45.5 4ZM32 55.64C26.83 52.34 4 36.92 4 22.5a14.5 14.5 0 0 1 26.36-8.33 2 2 0 0 0 3.27 0A14.5 14.5 0 0 1 60 22.5c0 14.41-22.83 29.83-28 33.14Z"
+                              data-original="#000000"/>
+                    </svg>
+                    <span class="absolute left-auto top-0 -ml-1 rounded-full bg-black px-1 py-0 text-xs text-white">0</span>
+                </span>
+
+                <span class="relative">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px"
+                         class="fill-[#333] inline cursor-pointer hover:fill-[#007bff]" viewBox="0 0 512 512">
+                        <path d="M164.96 300.004h.024c.02 0 .04-.004.059-.004H437a15.003 15.003 0 0 0 14.422-10.879l60-210a15.003 15.003 0 0 0-2.445-13.152A15.006 15.006 0 0 0 497 60H130.367l-10.722-48.254A15.003 15.003 0 0 0 105 0H15C6.715 0 0 6.715 0 15s6.715 15 15 15h77.969c1.898 8.55 51.312 230.918 54.156 243.71C131.184 280.64 120 296.536 120 315c0 24.812 20.188 45 45 45h272c8.285 0 15-6.715 15-15s-6.715-15-15-15H165c-8.27 0-15-6.73-15-15 0-8.258 6.707-14.977 14.96-14.996zM477.114 90l-51.43 180H177.032l-40-180zM150 405c0 24.813 20.188 45 45 45s45-20.188 45-45-20.188-45-45-45-45 20.188-45 45zm45-15c8.27 0 15 6.73 15 15s-6.73 15-15 15-15-6.73-15-15 6.73-15 15-15zm167 15c0 24.813 20.188 45 45 45s45-20.188 45-45-20.188-45-45-45-45 20.188-45 45zm45-15c8.27 0 15 6.73 15 15s-6.73 15-15 15-15-6.73-15-15 6.73-15 15-15zm0 0"
+                              data-original="#000000">
+                        </path>
+                    </svg>
+                    <span class="absolute left-auto top-0 -ml-1 rounded-full bg-black px-1 py-0 text-xs text-white">0</span>
+                </span>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192.904 192.904" width="20px"
+                     class="fill-[#333] cursor-pointer hover:fill-[#007bff]">
+                    <path d="m190.707 180.101-47.078-47.077c11.702-14.072 18.752-32.142 18.752-51.831C162.381 36.423 125.959 0 81.191 0 36.422 0 0 36.423 0 81.193c0 44.767 36.422 81.187 81.191 81.187 19.688 0 37.759-7.049 51.831-18.751l47.079 47.078a7.474 7.474 0 0 0 5.303 2.197 7.498 7.498 0 0 0 5.303-12.803zM15 81.193C15 44.694 44.693 15 81.191 15c36.497 0 66.189 29.694 66.189 66.193 0 36.496-29.692 66.187-66.189 66.187C44.693 147.38 15 117.689 15 81.193z">
+                    </path>
+                </svg>
+
+                <button id="toggleOpen" class='lg:hidden'>
+                    <svg class="h-7 w-7" fill="#000" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                              d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                              clip-rule="evenodd">
+                        </path>
+                    </svg>
+                </button>
+                <a asp-action="Logout" asp-controller="Auth" class='border-2 border-[#007bff] bg-[#007bff] rounded-full px-4 py-2 text-sm font-bold text-white transition-all duration-300 ease-in-out hover:bg-transparent hover:text-[#007bff]'>
+                    Log out
+                </a>
+            }
+            else
+            {
+                <a asp-action="Login" asp-controller="Auth" class='border-2 border-[#007bff] bg-[#007bff] rounded-full px-4 py-2 text-sm font-bold text-white transition-all duration-300 ease-in-out hover:bg-transparent hover:text-[#007bff]'>
+                    Login
+                </a>
+            }
+
+            <button id="toggleOpen" class='lg:hidden'>
+                <svg class="h-7 w-7" fill="#000" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd"
+                          d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                          clip-rule="evenodd">
+                    </path>
+                </svg>
+            </button>
+        </div>
+
+    </div>
 </header>
 <main class="min-h-screen flex-grow bg-gray-100">
     <div class="relative isolate px-6 pt-14 lg:px-8">
         @RenderBody()
     </div>
 </main>
+
+<footer class="bg-[#0a4275] font-sans tracking-wide">
+    <div class="px-6 py-14 sm:px-10">
+        <div class="grid-cols-1 grid gap-8 md:grid-cols-2 lg:grid-cols-5">
+
+            <div class="lg:col-span-2">
+                <a href='javascript:void(0)'>
+                    <img src="images/logo2.png" alt="logo"
+                         class='mb-8 w-44'/>
+                </a>
+                <p class="text-sm text-gray-300">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio.
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio.
+                </p>
+            </div>
+
+            <div>
+                <h4 class="mb-8 text-lg font-semibold text-white">Navigation</h4>
+                <ul class="space-y-4">
+                    <li>
+                        <a href="javascript:void(0)" class="text-sm text-gray-300 hover:text-white">Home</a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)" class="text-sm text-gray-300 hover:text-white">About</a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)" class="text-sm text-gray-300 hover:text-white">Services</a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)" class="text-sm text-gray-300 hover:text-white">Contact</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="mb-8 text-lg font-semibold text-white">Follow Us</h4>
+
+                <ul class="flex gap-4">
+                    <li>
+                        <a href="javascript:void(0)">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" class="inline h-6 w-6 fill-gray-300 hover:fill-white"
+                                 viewBox="0 0 24 24">
+                                <path fill-rule="evenodd"
+                                      d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h7v-7h-2v-3h2V8.5A3.5 3.5 0 0 1 15.5 5H18v3h-2a1 1 0 0 0-1 1v2h3v3h-3v7h4a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2z"
+                                      clip-rule="evenodd"/>
+                            </svg>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)" class="text-gray-300 hover:text-white">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" class="inline h-6 w-6 fill-gray-300 hover:fill-white"
+                                 viewBox="0 0 24 24">
+                                <path fill-rule="evenodd"
+                                      d="M21 5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5zm-2.5 8.2v5.3h-2.79v-4.93a1.4 1.4 0 0 0-1.4-1.4c-.77 0-1.39.63-1.39 1.4v4.93h-2.79v-8.37h2.79v1.11c.48-.78 1.47-1.3 2.32-1.3 1.8 0 3.26 1.46 3.26 3.26zM6.88 8.56a1.686 1.686 0 0 0 0-3.37 1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68zm1.39 1.57v8.37H5.5v-8.37h2.77z"
+                                      clip-rule="evenodd"/>
+                            </svg>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)" class="text-gray-300 hover:text-white">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" class="inline h-6 w-6 fill-gray-300 hover:fill-white"
+                                 viewBox="0 0 24 24">
+                                <path d="M12 9.3a2.7 2.7 0 1 0 0 5.4 2.7 2.7 0 0 0 0-5.4Zm0-1.8a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9Zm5.85-.225a1.125 1.125 0 1 1-2.25 0 1.125 1.125 0 0 1 2.25 0ZM12 4.8c-2.227 0-2.59.006-3.626.052-.706.034-1.18.128-1.618.299a2.59 2.59 0 0 0-.972.633 2.601 2.601 0 0 0-.634.972c-.17.44-.265.913-.298 1.618C4.805 9.367 4.8 9.714 4.8 12c0 2.227.006 2.59.052 3.626.034.705.128 1.18.298 1.617.153.392.333.674.632.972.303.303.585.484.972.633.445.172.918.267 1.62.3.993.047 1.34.052 3.626.052 2.227 0 2.59-.006 3.626-.052.704-.034 1.178-.128 1.617-.298.39-.152.674-.333.972-.632.304-.303.485-.585.634-.972.171-.444.266-.918.299-1.62.047-.993.052-1.34.052-3.626 0-2.227-.006-2.59-.052-3.626-.034-.704-.128-1.18-.299-1.618a2.619 2.619 0 0 0-.633-.972 2.595 2.595 0 0 0-.972-.634c-.44-.17-.914-.265-1.618-.298-.993-.047-1.34-.052-3.626-.052ZM12 3c2.445 0 2.75.009 3.71.054.958.045 1.61.195 2.185.419A4.388 4.388 0 0 1 19.49 4.51c.457.45.812.994 1.038 1.595.222.573.373 1.227.418 2.185.042.96.054 1.265.054 3.71 0 2.445-.009 2.75-.054 3.71-.045.958-.196 1.61-.419 2.185a4.395 4.395 0 0 1-1.037 1.595 4.44 4.44 0 0 1-1.595 1.038c-.573.222-1.227.373-2.185.418-.96.042-1.265.054-3.71.054-2.445 0-2.75-.009-3.71-.054-.958-.045-1.61-.196-2.185-.419A4.402 4.402 0 0 1 4.51 19.49a4.414 4.414 0 0 1-1.037-1.595c-.224-.573-.374-1.227-.419-2.185C3.012 14.75 3 14.445 3 12c0-2.445.009-2.75.054-3.71s.195-1.61.419-2.185A4.392 4.392 0 0 1 4.51 4.51c.45-.458.994-.812 1.595-1.037.574-.224 1.226-.374 2.185-.419C9.25 3.012 9.555 3 12 3Z"/>
+                            </svg>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)" class="text-gray-300 hover:text-white">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" class="inline h-6 w-6 fill-gray-300 hover:fill-white"
+                                 viewBox="0 0 24 24">
+                                <path d="M22.92 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.83 4.5 17.72 4 16.46 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98-3.56-.18-6.73-1.89-8.84-4.48-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.9 20.29 6.16 21 8.58 21c7.88 0 12.21-6.54 12.21-12.21 0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z"/>
+                            </svg>
+                        </a>
+                    </li>
+                </ul>
+
+            </div>
+
+            <div>
+                <h4 class="mb-8 text-lg font-semibold text-white">Contact Us</h4>
+                <div class="space-y-4">
+                    <p class="text-sm text-gray-300">123 Street, City Name</p>
+                    <p class="text-sm text-gray-300">northwind@netcoreapp.com</p>
+                    <p class="text-sm text-gray-300">+1 234 567 890</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="bg-[#08355e] py-5 text-center">
+        <p class='text-sm text-gray-300'>
+            © 2024
+            <a href='#' target='_blank'
+               class="mx-1 hover:underline">
+                NorthWind
+            </a>All Rights Reserved.
+        </p>
+    </div>
+</footer>
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/js/site.js" asp-append-version="true"></script>
 @await RenderSectionAsync("Scripts", required: false)
