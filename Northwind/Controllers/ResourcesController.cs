@@ -22,7 +22,7 @@ namespace Northwind.Controllers
         }
 
         [HttpGet]
-        [Authorize(Policy = "RoleResourcePolicy")]
+        //[Authorize(Policy = "RoleResourcePolicy")]
         public async Task<IActionResult> Scopes(string id)
         {
             var result = await _resourceService.GetScopesResult(id);
@@ -32,7 +32,7 @@ namespace Northwind.Controllers
         }
 
         [HttpPost]
-        [Authorize(policy: "Resources-SaveRolePermissions")]
+        //[Authorize(policy: "Resources-SaveRolePermissions")]
         public async Task<IActionResult> SaveRolePermissions(List<RolePermissionUpdateVm> permissions)
         {
             var result = await _resourceService.ValidateAndProcessPermissions(permissions);
