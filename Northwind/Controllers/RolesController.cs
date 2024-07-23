@@ -107,7 +107,7 @@ namespace Northwind.Controllers
         {
             var result = await _roleService.DeleteRole(id);
             return result.IsSuccess
-                ? RedirectToActionWithSuccess("Role deleted successfully.")
+                ? RedirectAsApiWithSuccess("Role deleted successfully.")
                 : RedirectToActionWithError(result.Error);
         }
 
@@ -142,6 +142,12 @@ namespace Northwind.Controllers
         {
             TempData["ErrorMessage"] = error;
             return RedirectToAction(nameof(Index));
+        }
+        
+        private IActionResult RedirectAsApiWithSuccess(string message)
+        {
+            TempData["SuccessMessage"] = message;
+            return Ok(new { message = "Role deleted successfully." });
         }
 
         private IActionResult HandleUpdateFailure(string error, IdentityRole role)
