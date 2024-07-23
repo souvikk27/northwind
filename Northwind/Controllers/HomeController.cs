@@ -1,6 +1,6 @@
-using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Northwind.Models;
+using System.Diagnostics;
 
 namespace Northwind.Controllers;
 

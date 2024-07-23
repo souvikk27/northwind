@@ -8,6 +8,6 @@ namespace Northwind.ViewModels
         public int CurrentPage { get; set; }
         public int TotalPages { get; set; }
         public int TotalRoles { get; set; }
-		public string SearchString { get; set; }
+        public string SearchString { get; set; }
     }
 }

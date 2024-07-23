@@ -14,8 +14,8 @@ public class RoleService : IRoleService
     private async Task<Result<IdentityRole>> FindRole(string id)
     {
         var role = await _roleManager.FindByIdAsync(id);
-        return role != null 
-            ? Result<IdentityRole>.Success(role) 
+        return role != null
+            ? Result<IdentityRole>.Success(role)
             : Result<IdentityRole>.Failure("Role not found");
     }
 
@@ -29,8 +29,8 @@ public class RoleService : IRoleService
     private async Task<Result<IdentityRole>> CheckRoleExists(string name)
     {
         var role = await _roleManager.FindByNameAsync(name);
-        return role != null 
-            ? Result<IdentityRole>.Failure("Role with the same name already exists") 
+        return role != null
+            ? Result<IdentityRole>.Failure("Role with the same name already exists")
             : Result<IdentityRole>.Success(default!);
     }
 
@@ -62,11 +62,11 @@ public class RoleService : IRoleService
     public async Task<Result<IdentityResult>> DeleteRole(string id)
     {
         return await FindRole(id)
-            .Result.BindAsync(async role => 
+            .Result.BindAsync(async role =>
             {
                 var result = await _roleManager.DeleteAsync(role);
-                return result.Succeeded 
-                    ? Result<IdentityResult>.Success(result) 
+                return result.Succeeded
+                    ? Result<IdentityResult>.Success(result)
                     : Result<IdentityResult>.Failure("Failed to delete role");
             });
     }

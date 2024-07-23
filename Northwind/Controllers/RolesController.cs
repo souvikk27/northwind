@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Northwind.Services.Railway.Roles;
@@ -117,21 +116,6 @@ namespace Northwind.Controllers
             return RedirectToAction("Scopes", "Resources", new { id = id });
         }
 
-        [HttpGet]
-        public IActionResult DeleteConfirmation(string id)
-        {
-            var viewModel = new DeleteConfirmationViewModel
-            {
-                ItemId = id,
-                ItemType = "role",
-                DeleteAction = "Delete",
-                DeleteController = "Roles",
-                CancelAction = "ClearModal",
-                CancelController = "Roles"
-            };
-            return PartialView("_DeleteConfirmation", viewModel);
-        }
-
         private IActionResult RedirectToActionWithSuccess(string message)
         {
             TempData["SuccessMessage"] = message;
@@ -143,7 +127,7 @@ namespace Northwind.Controllers
             TempData["ErrorMessage"] = error;
             return RedirectToAction(nameof(Index));
         }
-        
+
         private IActionResult RedirectAsApiWithSuccess(string message)
         {
             TempData["SuccessMessage"] = message;
