@@ -7,6 +7,11 @@ namespace Northwind.Permissions
         protected override async Task HandleRequirementAsync(AuthorizationHandlerContext context,
             PermissionRequirement requirement)
         {
+            if (context.User.Identity != null && (context.User == null || !context.User.Identity.IsAuthenticated))
+            {
+                return;
+            }
+
             var userClaims = context.User.Claims;
 
             // Check if the user has a permission claim for the controller and any of the actions
