@@ -11,6 +11,6 @@ namespace Northwind.Services
             {
                 context.Result = new BadRequestObjectResult(context.ModelState);
             }
-        }   
+        }
     }
 }

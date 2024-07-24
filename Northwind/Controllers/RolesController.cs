@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Northwind.Services.Railway.Roles;
@@ -128,7 +127,7 @@ namespace Northwind.Controllers
             TempData["ErrorMessage"] = error;
             return RedirectToAction(nameof(Index));
         }
-        
+
         private IActionResult RedirectAsApiWithSuccess(string message)
         {
             TempData["SuccessMessage"] = message;

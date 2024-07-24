@@ -63,7 +63,9 @@ namespace Northwind.Controllers
             {
                 var user = new ApplicationUser
                 {
-                    UserName = registerVm.UserName, Email = registerVm.Email, FirstName = registerVm.FirstName,
+                    UserName = registerVm.UserName,
+                    Email = registerVm.Email,
+                    FirstName = registerVm.FirstName,
                     LastName = registerVm.LastName,
                     EmailConfirmed = true
                 };

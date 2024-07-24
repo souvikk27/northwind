@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Northwind.ViewModels;
 using System.Security.Claims;
-using Microsoft.AspNetCore.Mvc.Infrastructure;
 
 namespace Northwind.Services.Railway.Resource
 {

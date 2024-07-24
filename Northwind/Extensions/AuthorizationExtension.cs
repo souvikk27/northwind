@@ -1,7 +1,7 @@
-using System.Reflection;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Northwind.Permissions;
+using System.Reflection;
 
 namespace Northwind.Extensions;
 
@@ -23,17 +23,17 @@ public static class AuthorizationExtension
                 .ToList();
 
             foreach (var policyName in from controller in controllers
-                     let controllerName = controller.Name.Replace("Controller", "")
-                     let actions = controller.GetMethods(BindingFlags.Public | BindingFlags.Instance)
-                         .Where(m =>
-                             (typeof(IActionResult).IsAssignableFrom(m.ReturnType) ||
-                              typeof(Task<IActionResult>).IsAssignableFrom(m.ReturnType)) &&
-                             m.DeclaringType == controller)
-                         .Select(m => m.Name)
-                         .ToList()
-                     from action in actions
-                     let actionName = action
-                     select $"{controllerName}-{actionName}")
+                                       let controllerName = controller.Name.Replace("Controller", "")
+                                       let actions = controller.GetMethods(BindingFlags.Public | BindingFlags.Instance)
+                                           .Where(m =>
+                                               (typeof(IActionResult).IsAssignableFrom(m.ReturnType) ||
+                                                typeof(Task<IActionResult>).IsAssignableFrom(m.ReturnType)) &&
+                                               m.DeclaringType == controller)
+                                           .Select(m => m.Name)
+                                           .ToList()
+                                       from action in actions
+                                       let actionName = action
+                                       select $"{controllerName}-{actionName}")
             {
                 options.AddPolicy(policyName, policy =>
                     policy.RequireClaim("Permission", policyName));
