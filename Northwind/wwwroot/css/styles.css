@@ -2463,11 +2463,6 @@ select {
 
 @media (prefers-color-scheme: dark) {
 
-  .dark\:bg-violet-600 {
-    --tw-bg-opacity: 1;
-    background-color: rgb(124 58 237 / var(--tw-bg-opacity));
-  }
-
   .dark\:text-gray-400 {
     --tw-text-opacity: 1;
     color: rgb(156 163 175 / var(--tw-text-opacity));
