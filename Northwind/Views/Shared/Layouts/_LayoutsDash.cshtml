@@ -9,14 +9,29 @@
     <link rel="stylesheet" href="~/lib/font-awesome/css/all.css"/>
 </head>
 <body>
-<nav class="min-w-[250px] font-[sans-serif] fixed left-0 top-0 h-screen overflow-auto bg-white px-4 py-6 shadow-lg">
-    <a href="javascript:void(0)">
-        <img src="~/images/logo1.png" alt="logo" class='w-[160px]'/>
-    </a>
 
+<!--Top Nav-->
+<header class='min-h-[50px] relative z-50 flex border-b bg-white font-sans tracking-wide'>
+    <div class='flex w-full flex-wrap items-center justify-between gap-4 px-10 py-3'>
+        <a href="@Url.Action("Index", "Dashboard")">
+            <img src="~/images/logo1.png" alt="logo" class='w-36'/>
+        </a>
+    </div>
+</header>
+
+<!-- Sidebar -->
+<nav class="min-w-[250px] font-[sans-serif] fixed left-0 top-0 h-screen overflow-auto bg-white px-4 py-6 pt-16 shadow-lg">
+    @* <a href="javascript:void(0)">
+        <img src="~/images/logo1.png" alt="logo" class='w-[160px]'/>
+    </a> *@
+
+    <ul class="mt-16">
+        <li>
+        </li>
+    </ul>
     <ul class="mt-6">
         <li>
-            <a href="javascript:void(0)"
+            <a href="@Url.Action("Index", "Dashboard")"
                class="flex items-center rounded px-4 py-3 text-sm text-black transition-all hover:text-blue-600 hover:bg-blue-50">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-[18px] h-[18px] mr-4"
                      viewBox="0 0 512 512">
@@ -143,7 +158,7 @@
         </ul>
     </div>
 </nav>
-<main class="min-h-screen flex-grow bg-gray-100">
+<main class="min-h-screen flex-grow bg-gray-100 pt-16">
     <div class="relative isolate px-6 pt-14 lg:px-8">
         @RenderBody()
     </div>
