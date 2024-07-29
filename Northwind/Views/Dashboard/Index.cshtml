@@ -3,42 +3,161 @@
     Layout = "Layouts/_LayoutsDash";
 }
 
-<div class="font-[sans-serif] mx-auto max-w-6xl">
-    <div class="w-full rounded bg-gray-50 px-12 py-8 max-sm:px-8">
-        <div class="mt-4">
-            <p class="text-sm leading-relaxed text-gray-800">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis accumsan, nunc et
-                tempus blandit, metus mi consectetur nibh, a pharetra felis turpis vitae ligula. Etiam laoreet velit nec neque
-                ultrices, non consequat mauris tincidunt.
-            </p>
+<div class="ml-[250px] p-6">
+    <!-- Added left margin to account for sidebar width -->
+    <h1 class="mb-6 text-3xl font-bold">Dashboard</h1>
+
+    <div class="grid-cols-1 mb-8 grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
+        <!-- Total Orders Card -->
+        <div class="rounded-lg bg-white p-5 shadow-lg">
+            <div class="flex items-start justify-between">
+                <div class="flex flex-col items-start">
+                    <h3 class="mb-2 text-gray-500">Total Orders</h3>
+                    <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-pink-100">
+                        <svg class="h-6 w-6 text-pink-500" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M3 3h2l.09.27a9.5 9.5 0 001.2 2.63A9.8 9.8 0 007 9a9.8 9.8 0 001.2 3.09 9.5 9.5 0 001.2 2.63L10 15h8V3H3zm0 2v2h8V5H3z" />
+                        </svg>
+                    </div>
+                    <p class="text-blue-500">View more...</p>
+                </div>
+                <div class="mt-2 space-y-3 text-right">
+                    <p class="text-green-500">+12%</p>
+                    <h1 class="text-2xl font-bold">421</h1>
+                </div>
+            </div>
         </div>
 
-        <button type="button" class="mt-6 rounded border-none bg-blue-600 px-6 py-3 text-sm tracking-wider text-white outline-none hover:bg-blue-700">Get started now</button>
+        <!-- Total Sales Card -->
+        <div class="rounded-lg bg-white p-5 shadow-lg">
+            <div class="flex items-start justify-between">
+                <div class="flex flex-col items-start">
+                    <h3 class="mb-2 text-gray-500">Total Sales</h3>
+                    <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-yellow-100">
+                        <svg class="h-6 w-6 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M2 4h16a2 2 0 012 2v8a2 2 0 01-2 2H2a2 2 0 01-2-2V6a2 2 0 012-2z" />
+                        </svg>
+                    </div>
+                    <p class="text-blue-500">View more...</p>
+                </div>
+                <div class="mt-2 space-y-3 text-right">
+                    <p class="text-green-500">+15%</p>
+                    <h1 class="text-2xl font-bold">$31K</h1>
+                </div>
+            </div>
+        </div>
+
+        <!-- New Customers Card -->
+        <div class="rounded-lg bg-white p-5 shadow-lg">
+            <div class="flex items-start justify-between">
+                <div class="flex flex-col items-start">
+                    <h3 class="mb-2 text-gray-500">New Customers</h3>
+                    <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-green-100">
+                        <svg class="h-6 w-6 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M10 2a6 6 0 100 12 6 6 0 000-12zm0 14c-3.33 0-10 1.67-10 5v1h20v-1c0-3.33-6.67-5-10-5z" />
+                        </svg>
+                    </div>
+                    <p class="text-blue-500">View more...</p>
+                </div>
+                <div class="mt-2 space-y-3 text-right">
+                    <p class="text-red-500">-5%</p>
+                    <h1 class="text-2xl font-bold">1.2K</h1>
+                </div>
+            </div>
+        </div>
+
+        <!-- Users Online Card -->
+        <div class="rounded-lg bg-white p-5 shadow-lg">
+            <div class="flex items-start justify-between">
+                <div class="flex flex-col items-start">
+                    <h3 class="mb-2 text-gray-500">Users Online</h3>
+                    <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-blue-100">
+                        <svg class="h-6 w-6 text-blue-500" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M10 2a6 6 0 100 12 6 6 0 000-12zm0 14c-3.33 0-10 1.67-10 5v1h20v-1c0-3.33-6.67-5-10-5z" />
+                        </svg>
+                    </div>
+                    <p class="text-blue-500">View more...</p>
+                </div>
+                <div class="mt-2 space-y-3 text-right">
+                    <h1 class="text-green-500">.</h1>
+                    <h1 class="text-2xl font-bold">602</h1>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="mt-4 grid gap-4 md:grid-cols-2">
-        <div class="bg-[#333] w-full rounded px-12 py-8 text-white max-sm:px-8">
-            <h2 class="text-2xl font-bold">Dark Card</h2>
-            <div class="mt-4">
-                <p class="text-sm leading-relaxed">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis accumsan, nunc et
-                    tempus blandit, metus mi consectetur nibh, a pharetra felis turpis vitae ligula. Etiam laoreet velit nec neque
-                    ultrices, non consequat mauris tincidunt.
-                </p>
-            </div>
-            <button type="button" class="mt-6 rounded border-none bg-gray-600 px-6 py-3 text-sm tracking-wider outline-none hover:bg-gray-700">Learn more</button>
+    <div class="mb-8 rounded-lg bg-white p-6 shadow-lg">
+        <h2 class="mb-4 text-2xl font-bold">Monthly Sales</h2>
+        <div style="height: 300px;">
+            <canvas id="barChart"></canvas>
         </div>
+    </div>
 
-        <div class="w-full rounded bg-gray-50 px-12 py-8 max-sm:px-8">
-            <h2 class="text-2xl font-bold text-gray-800">Gray Card</h2>
-            <div class="mt-4">
-                <p class="text-sm leading-relaxed">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis accumsan, nunc et
-                    tempus blandit, metus mi consectetur nibh, a pharetra felis turpis vitae ligula. Etiam laoreet velit nec neque
-                    ultrices, non consequat mauris tincidunt.
-                </p>
+    <div class="grid gap-8 sm:grid-cols-2">
+        <div class="rounded-lg bg-white p-6 shadow-lg">
+            <h2 class="mb-4 text-2xl font-bold">Monthly Revenue</h2>
+            <div style="height: 300px;">
+                <canvas id="lineChart"></canvas>
             </div>
-            <button type="button" class="mt-6 rounded border-none bg-gray-200 px-6 py-3 text-sm tracking-wider text-gray-800 outline-none hover:bg-gray-300">Learn more</button>
+        </div>
+        <div class="rounded-lg bg-white p-6 shadow-lg">
+            <h2 class="mb-4 text-2xl font-bold text-gray-800">Additional Information</h2>
+            <p class="mb-6 text-sm leading-relaxed">
+                This card contains text. You can replace it with another chart or keep it as is.
+            </p>
+            <button type="button" class="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-600">
+                Learn more
+            </button>
         </div>
     </div>
 </div>
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Bar Chart
+            var ctxBar = document.getElementById('barChart').getContext('2d');
+            var barChart = new Chart(ctxBar, {
+                type: 'bar',
+                data: {
+                    labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+                    datasets: [{
+                        label: 'Monthly Sales',
+                        data: [12, 19, 3, 5, 2, 3],
+                        backgroundColor: 'rgba(59, 130, 246, 0.6)',
+                        borderColor: 'rgba(59, 130, 246, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    },
+                    responsive: true,
+                    maintainAspectRatio: false
+                }
+            });
+
+            // Line Chart
+            var ctxLine = document.getElementById('lineChart').getContext('2d');
+            var lineChart = new Chart(ctxLine, {
+                type: 'line',
+                data: {
+                    labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+                    datasets: [{
+                        label: 'Monthly Revenue',
+                        data: [65, 59, 80, 81, 56, 55],
+                        fill: false,
+                        borderColor: 'rgb(59, 130, 246)',
+                        tension: 0.1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false
+                }
+            });
+        });
+    </script>
+}

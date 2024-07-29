@@ -52,6 +52,8 @@ document.addEventListener("DOMContentLoaded",
             });
     });
 
+
+//User Menu popup implementation
 document.getElementById('profileButton').addEventListener('click',
     function() {
         var popup = document.getElementById('profilePopup');
