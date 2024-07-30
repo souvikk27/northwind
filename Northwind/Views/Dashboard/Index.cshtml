@@ -1,229 +1,188 @@
 ﻿@{
-    ViewData["Title"] = "Dashboard";
-    Layout = "Layouts/_LayoutsDash";
+	ViewData["Title"] = "Dashboard";
+	Layout = "Layouts/_LayoutsDash";
 }
 
 <div class="ml-[250px] p-6">
-    <!-- Added left margin to account for sidebar width -->
-    <div class="grid-cols-1 mb-8 grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
-        <!-- Total Orders Card -->
-        <div class="rounded-lg bg-white p-5 shadow-lg">
-            <div class="flex items-start justify-between">
-                <div class="flex flex-col items-start">
-                    <h3 class="mb-2 text-gray-500">Total Orders</h3>
-                    <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-pink-100">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="h-6 w-6 text-pink-500" viewBox="0 0 16 16">
-                            <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"></path>
-                        </svg>
-                    </div>
-                    <p class="text-blue-500">View more...</p>
-                </div>
-                <div class="mt-2 space-y-3 text-right">
-                    <p class="text-green-500">+12%</p>
-                    <h1 class="text-2xl font-semibold">421</h1>
-                </div>
-            </div>
-        </div>
+	<!-- Added left margin to account for sidebar width -->
+	<div class="grid-cols-1 mb-8 grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
+		<!-- Total Orders Card -->
+		<div class="rounded-lg bg-white p-5 shadow-lg">
+			<div class="flex items-start justify-between">
+				<div class="flex flex-col items-start">
+					<h3 class="mb-2 text-gray-500">Total Orders</h3>
+					<div class="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-pink-100">
+						<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="h-6 w-6 text-pink-500" viewBox="0 0 16 16">
+							<path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"></path>
+						</svg>
+					</div>
+					<p class="text-blue-500">View more...</p>
+				</div>
+				<div class="mt-2 space-y-3 text-right">
+					<p class="text-green-500">+12%</p>
+					<h1 class="text-2xl font-semibold">421</h1>
+				</div>
+			</div>
+		</div>
 
-        <!-- Total Sales Card -->
-        <div class="rounded-lg bg-white p-5 shadow-lg">
-            <div class="flex items-start justify-between">
-                <div class="flex flex-col items-start">
-                    <h3 class="mb-2 text-gray-500">Total Sales</h3>
-                    <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-yellow-100">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="h-6 w-6 text-yellow-500" viewBox="0 0 16 16">
-                            <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v1h14V4a1 1 0 0 0-1-1H2zm13 4H1v5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V7z"></path>
-                            <path d="M2 10a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-1z"></path>
-                        </svg>
-                    </div>
-                    <p class="text-blue-500">View more...</p>
-                </div>
-                <div class="mt-2 space-y-3 text-right">
-                    <p class="text-green-500">+15%</p>
-                    <h1 class="text-2xl font-semibold">$31K</h1>
-                </div>
-            </div>
-        </div>
+		<!-- Total Sales Card -->
+		<div class="rounded-lg bg-white p-5 shadow-lg">
+			<div class="flex items-start justify-between">
+				<div class="flex flex-col items-start">
+					<h3 class="mb-2 text-gray-500">Total Sales</h3>
+					<div class="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-yellow-100">
+						<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="h-6 w-6 text-yellow-500" viewBox="0 0 16 16">
+							<path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v1h14V4a1 1 0 0 0-1-1H2zm13 4H1v5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V7z"></path>
+							<path d="M2 10a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-1z"></path>
+						</svg>
+					</div>
+					<p class="text-blue-500">View more...</p>
+				</div>
+				<div class="mt-2 space-y-3 text-right">
+					<p class="text-green-500">+15%</p>
+					<h1 class="text-2xl font-semibold">$31K</h1>
+				</div>
+			</div>
+		</div>
 
-        <!-- New Customers Card -->
-        <div class="rounded-lg bg-white p-5 shadow-lg">
-            <div class="flex items-start justify-between">
-                <div class="flex flex-col items-start">
-                    <h3 class="mb-2 text-gray-500">New Customers</h3>
-                    <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-green-100">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="h-6 w-6 text-green-500" viewBox="0 0 16 16">
-                            <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"></path>
-                        </svg>
-                    </div>
-                    <p class="text-blue-500">View more...</p>
-                </div>
-                <div class="mt-2 space-y-3 text-right">
-                    <p class="text-red-500">-5%</p>
-                    <h1 class="text-2xl font-semibold">1.2K</h1>
-                </div>
-            </div>
-        </div>
+		<!-- New Customers Card -->
+		<div class="rounded-lg bg-white p-5 shadow-lg">
+			<div class="flex items-start justify-between">
+				<div class="flex flex-col items-start">
+					<h3 class="mb-2 text-gray-500">New Customers</h3>
+					<div class="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-green-100">
+						<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="h-6 w-6 text-green-500" viewBox="0 0 16 16">
+							<path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"></path>
+						</svg>
+					</div>
+					<p class="text-blue-500">View more...</p>
+				</div>
+				<div class="mt-2 space-y-3 text-right">
+					<p class="text-red-500">-5%</p>
+					<h1 class="text-2xl font-semibold">1.2K</h1>
+				</div>
+			</div>
+		</div>
 
-        <!-- Users Online Card -->
-        <div class="rounded-lg bg-white p-5 shadow-lg">
-            <div class="flex items-start justify-between">
-                <div class="flex flex-col items-start">
-                    <h3 class="mb-2 text-gray-500">Users Online</h3>
-                    <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-blue-100">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="h-6 w-6 text-blue-500" viewBox="0 0 16 16">
-                            <path d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1h8zm-7.978-1A.261.261 0 0 1 7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002a.274.274 0 0 1-.014.002H7.022zM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0zM6.936 9.28a5.88 5.88 0 0 0-1.23-.247A7.35 7.35 0 0 0 5 9c-4 0-5 3-5 4 0 .667.333 1 1 1h4.216A2.238 2.238 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816zM4.92 10A5.493 5.493 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275zM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0zm3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4z"></path>
-                        </svg>
-                    </div>
-                    <p class="text-blue-500">View more...</p>
-                </div>
-                <div class="mt-2 space-y-2 text-right">
-                    <svg width="32px" height="32px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#18b116">
+		<!-- Users Online Card -->
+		<div class="rounded-lg bg-white p-5 shadow-lg">
+			<div class="flex items-start justify-between">
+				<div class="flex flex-col items-start">
+					<h3 class="mb-2 text-gray-500">Users Online</h3>
+					<div class="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-blue-100">
+						<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="h-6 w-6 text-blue-500" viewBox="0 0 16 16">
+							<path d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1h8zm-7.978-1A.261.261 0 0 1 7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002a.274.274 0 0 1-.014.002H7.022zM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0zM6.936 9.28a5.88 5.88 0 0 0-1.23-.247A7.35 7.35 0 0 0 5 9c-4 0-5 3-5 4 0 .667.333 1 1 1h4.216A2.238 2.238 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816zM4.92 10A5.493 5.493 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275zM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0zm3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4z"></path>
+						</svg>
+					</div>
+					<p class="text-blue-500">View more...</p>
+				</div>
+				<div class="mt-2 space-y-2 text-right">
+					<svg width="32px" height="32px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#18b116">
 
-                        <g id="SVGRepo_bgCarrier" stroke-width="0"/>
+						<g id="SVGRepo_bgCarrier" stroke-width="0"/>
 
-                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
+						<g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
 
-                        <g id="SVGRepo_iconCarrier">
-                            <path d="M12 9.5C13.3807 9.5 14.5 10.6193 14.5 12C14.5 13.3807 13.3807 14.5 12 14.5C10.6193 14.5 9.5 13.3807 9.5 12C9.5 10.6193 10.6193 9.5 12 9.5Z" fill="#18b116"/>
-                        </g>
+						<g id="SVGRepo_iconCarrier">
+							<path d="M12 9.5C13.3807 9.5 14.5 10.6193 14.5 12C14.5 13.3807 13.3807 14.5 12 14.5C10.6193 14.5 9.5 13.3807 9.5 12C9.5 10.6193 10.6193 9.5 12 9.5Z" fill="#18b116"/>
+						</g>
 
-                    </svg>
-                    <h1 class="text-2xl font-semibold">602</h1>
-                </div>
-            </div>
-        </div>
-    </div>
+					</svg>
+					<h1 class="text-2xl font-semibold">602</h1>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="grid-cols-1 grid gap-8 md:grid-cols-2">
+		<!-- Left column -->
+		<div class="space-y-4">
+			<!-- Monthly Sales Chart -->
+			<div class="rounded-lg bg-white p-4 shadow">
+				<h2 class="mb-2 text-lg font-semibold">Monthly Sales</h2>
+				<!-- Add your chart component here -->
+				<div style="height: 300px;">
+					<canvas id="barChart"></canvas>
+				</div>
+			</div>
+			
+			<!-- Platform Table -->
+			<div class="rounded-lg bg-white p-4 shadow">
+				<table class="w-full">
+					<thead>
+					<tr>
+						<th class="text-left py-2 font-semibold">Platform</th>
+						<th class="text-center py-2 font-semibold">Visitors</th>
+						<th class="text-right py-2 font-semibold">Ads Budget</th>
+					</tr>
+					</thead>
+					<tbody>
+					<tr>
+						<td class="py-2">Facebook Ads</td>
+						<td class="py-2 text-center">1,520</td>
+						<td class="py-2">
+							<div class="flex items-center justify-end">
+								<div class="relative h-2 w-full rounded-full bg-gray-200 mr-2">
+									<div class="absolute left-0 top-0 h-2 rounded-full bg-blue-500" style="width: 78%;"></div>
+								</div>
+								<span class="text-xs text-gray-500 w-12 text-right">78%</span>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td class="py-2">Google Ads</td>
+						<td class="py-2 text-center">980</td>
+						<td class="py-2">
+							<div class="flex items-center justify-end">
+								<div class="relative h-2 w-full rounded-full bg-gray-200 mr-2">
+									<div class="absolute left-0 top-0 h-2 rounded-full bg-pink-500" style="width: 65%;"></div>
+								</div>
+								<span class="text-xs text-gray-500 w-12 text-right">65%</span>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td class="py-2">Microsoft Ads</td>
+						<td class="py-2 text-center">540</td>
+						<td class="py-2">
+							<div class="flex items-center justify-end">
+								<div class="relative h-2 w-full rounded-full bg-gray-200 mr-2">
+									<div class="absolute left-0 top-0 h-2 rounded-full bg-yellow-500" style="width: 55%;"></div>
+								</div>
+								<span class="text-xs text-gray-500 w-12 text-right">55%</span>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td class="py-2">TikTok Ads</td>
+						<td class="py-2 text-center">350</td>
+						<td class="py-2">
+							<div class="flex items-center justify-end">
+								<div class="relative h-2 w-full rounded-full bg-gray-200 mr-2">
+									<div class="absolute left-0 top-0 h-2 rounded-full bg-black" style="width: 40%;"></div>
+								</div>
+								<span class="text-xs text-gray-500 w-12 text-right">40%</span>
+							</div>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
 
-
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <!-- Left column -->
-        <div class="space-y-4">
-            <!-- Monthly Sales Chart -->
-            <div class="bg-white rounded-lg shadow p-4">
-                <h2 class="text-lg font-semibold mb-2">Monthly Sales</h2>
-                <!-- Add your chart component here -->
-                <div style="height: 300px;">
-                    <canvas id="barChart"></canvas>
-                </div>
-            </div>
-
-            <!-- Platform Table -->
-            <div class="bg-white rounded-lg shadow p-4">
-                <table class="w-full items-center">
-                    <thead>
-                    <tr>
-                        <th class="text-left">Platform</th>
-                        <th class="text-left">Visitors</th>
-                        <th class="text-left">Ads budget</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <!-- Add table rows here -->
-                    <tr>
-                        <td class="py-2">Facebook Ads</td>
-                        <td class="py-2 text-center">1,520</td>
-                        <td class="py-2 text-right">
-                            <div class="relative w-full h-2 bg-gray-200 rounded-full">
-                                <div class="absolute top-0 left-0 h-2 bg-blue-500 rounded-full" style="width: 78%;"></div>
-                            </div>
-                            <span class="text-xs text-gray-500">78%</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="py-2">Google Ads</td>
-                        <td class="py-2 text-center">980</td>
-                        <td class="py-2 text-right">
-                            <div class="relative w-full h-2 bg-gray-200 rounded-full">
-                                <div class="absolute top-0 left-0 h-2 bg-pink-500 rounded-full" style="width: 65%;"></div>
-                            </div>
-                            <span class="text-xs text-gray-500">65%</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="py-2">Microsoft Ads</td>
-                        <td class="py-2 text-center">540</td>
-                        <td class="py-2 text-right">
-                            <div class="relative w-full h-2 bg-gray-200 rounded-full">
-                                <div class="absolute top-0 left-0 h-2 bg-yellow-500 rounded-full" style="width: 55%;"></div>
-                            </div>
-                            <span class="text-xs text-gray-500">55%</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="py-2">Tiktok Ads</td>
-                        <td class="py-2 text-center">350</td>
-                        <td class="py-2 text-right">
-                            <div class="relative w-full h-2 bg-gray-200 rounded-full">
-                                <div class="absolute top-0 left-0 h-2 bg-black rounded-full" style="width: 40%;"></div>
-                            </div>
-                            <span class="text-xs text-gray-500">40%</span>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <!-- Right column -->
-        <div>
-            <!-- Traffic Source Pie Chart -->
-            <div class="bg-white rounded-lg shadow p-4">
-                <h2 class="text-lg font-semibold mb-2">Traffic Source</h2>
-                <!-- Add your pie chart component here -->
-                <div style="height: 600px;">
-                    <canvas id="pieChart"></canvas>
-                </div>
-            </div>
-        </div>
-    </div>
+		<!-- Right column -->
+		<div>
+			<!-- Traffic Source Pie Chart -->
+			<div class="rounded-lg bg-white p-4 shadow">
+				<h2 class="mb-2 text-lg font-semibold">Traffic Source</h2>
+				<!-- Add your pie chart component here -->
+				<div style="height: 600px;">
+					<canvas id="pieChart"></canvas>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 
 @section Scripts {
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            // Bar Chart
-            var ctxBar = document.getElementById('barChart').getContext('2d');
-            var barChart = new Chart(ctxBar, {
-                type: 'bar',
-                data: {
-                    labels: ['January', 'February', 'March', 'April', 'May', 'June'],
-                    datasets: [{
-                        label: 'Monthly Sales',
-                        data: [12, 19, 3, 5, 2, 3],
-                        backgroundColor: 'rgba(59, 130, 246, 0.6)',
-                        borderColor: 'rgba(59, 130, 246, 1)',
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    scales: {
-                        y: {
-                            beginAtZero: true
-                        }
-                    },
-                    responsive: true,
-                    maintainAspectRatio: false
-                }
-            });
-
-            //Doughnut Chart
-            var ctxDoughnut = document.getElementById('pieChart').getContext('2d');
-            var doughnutChart = new Chart(ctxDoughnut, {
-                type: 'doughnut',
-                data: {
-                    labels: ['Search Engine', 'Paid Ads', 'Social Posts', 'Referral Links', 'Email Campaigns', 'Others'],
-                    datasets: [{
-                        data: [78, 65, 25, 15, 5, 40],
-                        backgroundColor: ['rgba(59, 130, 246, 0.6)', 'rgba(255, 99, 132, 0.6)', 'rgba(54, 162, 235, 0.6)', 'rgba(255, 206, 86, 0.6)', 'rgba(75, 192, 192, 0.6)', 'rgba(153, 102, 255, 0.6)'],
-                        borderColor: ['rgba(59, 130, 246, 1)', 'rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)', 'rgba(75, 192, 192, 1)', 'rgba(153, 102, 255, 1)'],
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false
-                }
-            });
-        });
-    </script>
+	<script src="/js/dashchart.js"></script>
 }
