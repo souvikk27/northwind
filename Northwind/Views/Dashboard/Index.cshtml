@@ -93,96 +93,174 @@
 			</div>
 		</div>
 	</div>
-	<div class="grid-cols-1 grid gap-8 md:grid-cols-2">
-		<!-- Left column -->
-		<div class="space-y-4">
-			<!-- Monthly Sales Chart -->
-			<div class="rounded-lg bg-white p-4 shadow">
-				<h2 class="mb-2 text-lg font-semibold">Monthly Sales</h2>
-				<!-- Add your chart component here -->
-				<div style="height: 300px;">
-					<canvas id="barChart"></canvas>
-				</div>
-			</div>
+    <div class="grid-cols-1 grid gap-8 md:grid-cols-2">
+        <!-- Left column -->
+        <div class="space-y-4">
+            <!-- Monthly Sales Chart -->
+            <div class="rounded-lg bg-white p-4 shadow">
+                <h2 class="mb-2 text-lg font-semibold">Monthly Sales</h2>
+                <!-- Add your chart component here -->
+                <div style="height: 300px;">
+                    <canvas id="barChart"></canvas>
+                </div>
+            </div>
 			
-			<!-- Platform Table -->
-			<div class="rounded-lg bg-white p-4 shadow">
-				<table class="w-full">
-					<thead>
-					<tr>
-						<th class="text-left py-2 font-semibold">Platform</th>
-						<th class="text-center py-2 font-semibold">Visitors</th>
-						<th class="text-right py-2 font-semibold">Ads Budget</th>
-					</tr>
-					</thead>
-					<tbody>
-					<tr>
-						<td class="py-2">Facebook Ads</td>
-						<td class="py-2 text-center">1,520</td>
-						<td class="py-2">
-							<div class="flex items-center justify-end">
-								<div class="relative h-2 w-full rounded-full bg-gray-200 mr-2">
-									<div class="absolute left-0 top-0 h-2 rounded-full bg-blue-500" style="width: 78%;"></div>
-								</div>
-								<span class="text-xs text-gray-500 w-12 text-right">78%</span>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td class="py-2">Google Ads</td>
-						<td class="py-2 text-center">980</td>
-						<td class="py-2">
-							<div class="flex items-center justify-end">
-								<div class="relative h-2 w-full rounded-full bg-gray-200 mr-2">
-									<div class="absolute left-0 top-0 h-2 rounded-full bg-pink-500" style="width: 65%;"></div>
-								</div>
-								<span class="text-xs text-gray-500 w-12 text-right">65%</span>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td class="py-2">Microsoft Ads</td>
-						<td class="py-2 text-center">540</td>
-						<td class="py-2">
-							<div class="flex items-center justify-end">
-								<div class="relative h-2 w-full rounded-full bg-gray-200 mr-2">
-									<div class="absolute left-0 top-0 h-2 rounded-full bg-yellow-500" style="width: 55%;"></div>
-								</div>
-								<span class="text-xs text-gray-500 w-12 text-right">55%</span>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td class="py-2">TikTok Ads</td>
-						<td class="py-2 text-center">350</td>
-						<td class="py-2">
-							<div class="flex items-center justify-end">
-								<div class="relative h-2 w-full rounded-full bg-gray-200 mr-2">
-									<div class="absolute left-0 top-0 h-2 rounded-full bg-black" style="width: 40%;"></div>
-								</div>
-								<span class="text-xs text-gray-500 w-12 text-right">40%</span>
-							</div>
-						</td>
-					</tr>
-					</tbody>
-				</table>
-			</div>
-		</div>
+            <!-- Platform Table -->
+            <div class="rounded-lg bg-white p-4 shadow">
+                <table class="w-full">
+                    <thead>
+                    <tr>
+                        <th class="py-2 text-left font-semibold">Platform</th>
+                        <th class="py-2 text-center font-semibold">Visitors</th>
+                        <th class="py-2 text-right font-semibold">Ads Budget</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td class="py-2">Facebook Ads</td>
+                        <td class="py-2 text-center">1,520</td>
+                        <td class="py-2">
+                            <div class="flex items-center justify-end">
+                                <div class="relative mr-2 h-2 w-full rounded-full bg-gray-200">
+                                    <div class="absolute left-0 top-0 h-2 rounded-full bg-blue-500" style="width: 78%;"></div>
+                                </div>
+                                <span class="w-12 text-right text-xs text-gray-500">78%</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="py-2">Google Ads</td>
+                        <td class="py-2 text-center">980</td>
+                        <td class="py-2">
+                            <div class="flex items-center justify-end">
+                                <div class="relative mr-2 h-2 w-full rounded-full bg-gray-200">
+                                    <div class="absolute left-0 top-0 h-2 rounded-full bg-pink-500" style="width: 65%;"></div>
+                                </div>
+                                <span class="w-12 text-right text-xs text-gray-500">65%</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="py-2">Microsoft Ads</td>
+                        <td class="py-2 text-center">540</td>
+                        <td class="py-2">
+                            <div class="flex items-center justify-end">
+                                <div class="relative mr-2 h-2 w-full rounded-full bg-gray-200">
+                                    <div class="absolute left-0 top-0 h-2 rounded-full bg-yellow-500" style="width: 55%;"></div>
+                                </div>
+                                <span class="w-12 text-right text-xs text-gray-500">55%</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="py-2">TikTok Ads</td>
+                        <td class="py-2 text-center">350</td>
+                        <td class="py-2">
+                            <div class="flex items-center justify-end">
+                                <div class="relative mr-2 h-2 w-full rounded-full bg-gray-200">
+                                    <div class="absolute left-0 top-0 h-2 rounded-full bg-black" style="width: 40%;"></div>
+                                </div>
+                                <span class="w-12 text-right text-xs text-gray-500">40%</span>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
 
-		<!-- Right column -->
-		<div>
-			<!-- Traffic Source Pie Chart -->
-			<div class="rounded-lg bg-white p-4 shadow">
-				<h2 class="mb-2 text-lg font-semibold">Traffic Source</h2>
-				<!-- Add your pie chart component here -->
-				<div style="height: 600px;">
-					<canvas id="pieChart"></canvas>
-				</div>
-			</div>
-		</div>
-	</div>
+        <!-- Right column -->
+        <div>
+            <!-- Traffic Source Pie Chart -->
+            <div class="rounded-lg bg-white p-4 shadow">
+                <h2 class="mb-2 text-lg font-semibold">Traffic Source</h2>
+                <!-- Add your pie chart component here -->
+                <div style="height: 600px;">
+                    <canvas id="pieChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Container for the datamap and chart -->
+    <div class="mb-6 rounded-lg bg-white p-6 shadow-md">
+        <h2 class="mb-4 text-2xl font-semibold">Sessions by Country</h2>
+        <div id="datamap" style="position: relative; width: 60%; height: 400px; display: inline-block;"></div>
+        <div style="position: relative; width: 35%; height: 400px; display: inline-block;">
+            <canvas id="countryChart"></canvas>
+        </div>
+    </div>
 </div>
 
 @section Scripts {
-	<script src="/js/dashchart.js"></script>
+    <script src="/js/dashchart.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Initialize Datamap
+            var map = new Datamap({
+                element: document.getElementById('datamap'),
+                fills: {
+                    defaultFill: "#f0f0f0",
+                    high: "#5e72e4",
+                    medium: "#11cdef",
+                    low: "#ff6b6b"
+                },
+                data: {
+                    USA: { fillKey: "high" },
+                    RUS: { fillKey: "medium" },
+                    IND: { fillKey: "medium" },
+                    ARG: { fillKey: "low" },
+                    BRA: { fillKey: "low" },
+                    // Add more countries as needed
+                },
+                geographyConfig: {
+                    highlightOnHover: true,
+                    popupTemplate: function (geography, data) {
+                        return '<div class="hoverinfo"><strong>' + geography.properties.name + '</strong></div>';
+                    }
+                }
+            });
+
+            // Initialize Chart.js Bar Chart
+            var ctx = document.getElementById('countryChart').getContext('2d');
+            var countryChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['IN', 'US', 'ES', 'UK', 'RU', 'ID', 'BR', 'AR'],
+                    datasets: [{
+                        label: 'Sessions by Country',
+                        data: [30, 25, 20, 15, 10, 5, 3, 1],
+                        backgroundColor: [
+                            '#5e72e4',
+                            '#11cdef',
+                            '#2dce89',
+                            '#f5365c',
+                            '#fb6340',
+                            '#ffd600',
+                            '#9c27b0',
+                            '#795548'
+                        ],
+                        borderColor: [
+                            '#5e72e4',
+                            '#11cdef',
+                            '#2dce89',
+                            '#f5365c',
+                            '#fb6340',
+                            '#ffd600',
+                            '#9c27b0',
+                            '#795548'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        });
+    </script>
 }
