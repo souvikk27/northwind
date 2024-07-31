@@ -183,10 +183,10 @@
     </div>
     
     <!-- Container for the datamap and chart -->
-    <div class="mb-6 rounded-lg bg-white p-6 shadow-md">
+    <div class="mb-6 mt-6 rounded-lg bg-white p-6 shadow-md">
         <h2 class="mb-4 text-2xl font-semibold">Sessions by Country</h2>
-        <div id="datamap" style="position: relative; width: 60%; height: 400px; display: inline-block;"></div>
-        <div style="position: relative; width: 35%; height: 400px; display: inline-block;">
+        <div id="datamap" style="position: relative; width: 50%; height: 400px; display: inline-block;"></div>
+        <div style="position: relative; width: 50%; height: 400px; display: inline-block;">
             <canvas id="countryChart"></canvas>
         </div>
     </div>
@@ -197,7 +197,7 @@
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             // Initialize Datamap
-            var map = new Datamap({
+            const map = new Datamap({
                 element: document.getElementById('datamap'),
                 fills: {
                     defaultFill: "#f0f0f0",
@@ -222,8 +222,8 @@
             });
 
             // Initialize Chart.js Bar Chart
-            var ctx = document.getElementById('countryChart').getContext('2d');
-            var countryChart = new Chart(ctx, {
+            const ctx = document.getElementById('countryChart').getContext('2d');
+            const countryChart = new Chart(ctx, {
                 type: 'bar',
                 data: {
                     labels: ['IN', 'US', 'ES', 'UK', 'RU', 'ID', 'BR', 'AR'],
