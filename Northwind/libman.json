@@ -9,6 +9,18 @@
     {
       "library": "Chart.js@4.4.1",
       "destination": "wwwroot/lib/Chart.js/"
+    },
+    {
+      "library": "d3@7.9.0",
+      "destination": "wwwroot/lib/d3/"
+    },
+    {
+      "library": "topojson@3.0.2",
+      "destination": "wwwroot/lib/topojson/"
+    },
+    {
+      "library": "datamaps@0.5.9",
+      "destination": "wwwroot/lib/datamaps/"
     }
   ]
 }
