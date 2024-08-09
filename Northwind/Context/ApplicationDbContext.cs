@@ -69,6 +69,8 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser, IdentityR
 
     public virtual DbSet<Territory> Territories { get; set; }
 
+    public virtual DbSet<ProductImage> ProductImages { get; set; }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         => optionsBuilder.UseSqlServer(
             "Server=localhost;Database=Northwind;User ID=sa;Password=Sou@2345;TrustServerCertificate=True;");
@@ -465,6 +467,17 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser, IdentityR
             entity.Property(e => e.CategoryName).HasMaxLength(15);
             entity.Property(e => e.ProductName).HasMaxLength(40);
             entity.Property(e => e.QuantityPerUnit).HasMaxLength(20);
+        });
+
+        modelBuilder.Entity<ProductImage>(entity =>
+        {
+            entity.HasIndex(e => e.Path, "ImagePath");
+            entity.HasIndex(e => e.ProductId, "ProductId");
+
+            entity.HasOne(d => d.Product).WithMany(p => p.ProductImages)
+                .HasForeignKey(d => d.ProductId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_Product_Images_Products");
         });
 
         modelBuilder.Entity<QuarterlyOrder>(entity =>
