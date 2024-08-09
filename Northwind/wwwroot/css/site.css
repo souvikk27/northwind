@@ -18,3 +18,12 @@
     z-index: 50;
     pointer-events: auto;
 }
+
+.svg-path {
+    stroke: #323232;
+    transition: stroke 0.3s;
+}
+
+.group:hover .svg-path {
+    stroke: #2563eb; /* Tailwind's blue-600 */
+}
