@@ -4,6 +4,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
 builder.Services.ConfigureDbContext(builder.Configuration);
+builder.Services.ConfigureSqlConnectionFactory(builder.Configuration);
 builder.Services.ConfigureIdentity();
 builder.Services.ConfigureRailwayPattern();
 builder.Services.ConfigureAuthorizationPolicy();

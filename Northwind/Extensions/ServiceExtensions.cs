@@ -4,6 +4,7 @@ using Northwind.Context;
 using Northwind.Models;
 using Northwind.Services.Railway.Resource;
 using Northwind.Services.Railway.Roles;
+using Northwind.Services.SQL;
 
 namespace Northwind.Extensions;
 
@@ -24,6 +25,13 @@ public static class ServiceExtensions
             context.Database.Migrate();
         }
     }
+
+    public static void ConfigureSqlConnectionFactory(this IServiceCollection services, IConfiguration configuration)
+    {
+	    var connectionString = configuration.GetConnectionString("Northwind") ??
+	                           throw new ArgumentNullException(nameof(configuration));
+		services.AddSingleton<ISqlConnectionFactory>(_ => new SqlConnectionFactory(connectionString));
+	}
 
     public static void ConfigureIdentity(this IServiceCollection services)
     {

@@ -8,6 +8,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <PackageReference Include="Dapper" Version="2.1.35" />
       <PackageReference Include="EfCore.SchemaCompare" Version="8.0.0" />
       <PackageReference Include="Htmx" Version="1.8.0" />
       <PackageReference Include="Htmx.TagHelpers" Version="1.8.0" />
