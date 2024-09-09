@@ -1,0 +1,21 @@
+﻿services:
+  northwind:
+    image: northwind
+    container_name: Northwind.Shop
+    build:
+      context: .
+      dockerfile: Northwind/Dockerfile
+    depends_on: 
+        - northwind-db
+  northwind-db:
+    image: mcr.microsoft.com/mssql/server:latest
+    container_name: Northwind.Db
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_DATABASE=northwind
+      - MSSQL_USER=sa
+      - MSSQL_PASSWORD=Sou@2345
+    volumes:
+      - ./.containers/database:/var/opt/mssql
+    ports:
+      - "1433:1433"

@@ -15,6 +15,16 @@ public static class ServiceExtensions
             options.UseSqlServer(configuration.GetConnectionString("Northwind")));
     }
 
+    public static void UseAutoMigrations(this WebApplication app)
+    {
+        using (var scope = app.Services.CreateScope())
+        {
+            var services = scope.ServiceProvider;
+            var context = services.GetRequiredService<ApplicationDbContext>();
+            context.Database.Migrate();
+        }
+    }
+
     public static void ConfigureIdentity(this IServiceCollection services)
     {
         services.AddIdentity<ApplicationUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)

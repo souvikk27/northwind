@@ -18,6 +18,8 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
+app.UseAutoMigrations();
+
 app.UseRouting();
 
 app.UseAuthorization();
