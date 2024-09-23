@@ -5,14 +5,17 @@
     build:
       context: .
       dockerfile: Northwind/Dockerfile
-    depends_on: 
-        - northwind-db
+    depends_on:
+      - northwind-db
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ConnectionStrings__SqlConnection=Server=northwind-db;Database=NorthWind;User=sa;Password=Sou@2345;TrustServerCertificate=true;
   northwind-db:
     image: mcr.microsoft.com/mssql/server:latest
     container_name: Northwind.Db
     environment:
       - ACCEPT_EULA=Y
-      - MSSQL_DATABASE=northwind
+      - MSSQL_DATABASE=Northwind
       - MSSQL_USER=sa
       - MSSQL_PASSWORD=Sou@2345
     volumes:
