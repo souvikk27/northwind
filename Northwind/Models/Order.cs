@@ -1,6 +1,8 @@
-﻿namespace Northwind.Models;
+﻿using Northwind.Models.Abstractions;
 
-public partial class Order
+namespace Northwind.Models;
+
+public partial class Order : AuditableBaseEntity    
 {
     public int OrderId { get; set; }
 

@@ -1,6 +1,8 @@
-﻿namespace Northwind.Models;
+﻿using Northwind.Models.Abstractions;
 
-public partial class Supplier
+namespace Northwind.Models;
+
+public partial class Supplier : AuditableBaseEntity
 {
     public int SupplierId { get; set; }
 

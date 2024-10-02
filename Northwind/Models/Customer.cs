@@ -1,6 +1,6 @@
 ﻿namespace Northwind.Models;
 
-public partial class Customer
+public sealed partial class Customer
 {
     public string CustomerId { get; set; } = null!;
 
@@ -24,7 +24,7 @@ public partial class Customer
 
     public string? Fax { get; set; }
 
-    public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
+    public ICollection<Order> Orders { get; set; } = new List<Order>();
 
-    public virtual ICollection<CustomerDemographic> CustomerTypes { get; set; } = new List<CustomerDemographic>();
+    public ICollection<CustomerDemographic> CustomerTypes { get; set; } = new List<CustomerDemographic>();
 }

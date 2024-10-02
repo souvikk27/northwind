@@ -1,6 +1,8 @@
-﻿namespace Northwind.Models;
+﻿using Northwind.Models.Abstractions;
 
-public partial class Employee
+namespace Northwind.Models;
+
+public class Employee : AuditableBaseEntity
 {
     public int EmployeeId { get; set; }
 

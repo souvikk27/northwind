@@ -1,6 +1,8 @@
-﻿namespace Northwind.Models;
+﻿using Northwind.Models.Abstractions;
 
-public partial class Shipper
+namespace Northwind.Models;
+
+public partial class Shipper : AuditableBaseEntity
 {
     public int ShipperId { get; set; }
 

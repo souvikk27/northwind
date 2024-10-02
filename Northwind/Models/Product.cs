@@ -1,6 +1,8 @@
-﻿namespace Northwind.Models;
+﻿using Northwind.Models.Abstractions;
 
-public partial class Product
+namespace Northwind.Models;
+
+public class Product : AuditableBaseEntity
 {
     public int ProductId { get; set; }
 
