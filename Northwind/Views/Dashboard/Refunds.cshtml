@@ -1,0 +1,476 @@
+@model Northwind.ViewModels.RefundsViewModel
+@{
+    ViewData["Title"] = "Refunds";
+    Layout = "Layouts/_LayoutsDash";
+}
+
+<div class="ml-[250px] p-6">
+    <!-- Header Section -->
+    <div class="mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between">
+        <div>
+            <h1 class="text-2xl font-bold text-gray-800">Refund Management</h1>
+            <p class="text-gray-600">View and process customer refund requests</p>
+        </div>
+        <div class="mt-4 flex items-center space-x-3 sm:mt-0">
+            <div class="relative inline-block">
+                <select class="appearance-none rounded-lg border border-gray-300 bg-white py-2 pl-4 pr-10 text-sm font-medium text-gray-700 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500">
+                    <option>All Refunds</option>
+                    <option>Pending</option>
+                    <option>Approved</option>
+                    <option>Processed</option>
+                    <option>Rejected</option>
+                </select>
+                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                    <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                    </svg>
+                </div>
+            </div>
+            <button class="flex items-center rounded-lg bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                </svg>
+                Export Report
+            </button>
+        </div>
+    </div>
+
+    <!-- Summary Cards -->
+    <div class="mb-6 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <!-- Total Refunds Card -->
+        <div class="overflow-hidden rounded-lg bg-white p-4 shadow-sm transition-all duration-300 hover:shadow-md">
+            <div class="flex items-center">
+                <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-indigo-100">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 15v-1a4 4 0 00-4-4H8m0 0l3 3m-3-3l3-3m9 14V5a2 2 0 00-2-2H6a2 2 0 00-2 2v16l4-2 4 2 4-2 4 2z" />
+                    </svg>
+                </div>
+                <div class="ml-4">
+                    <h2 class="font-semibold text-gray-500">Total Refunds</h2>
+                    <p class="text-2xl font-bold text-gray-800">@Model.TotalRefunds</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Total Amount Card -->
+        <div class="overflow-hidden rounded-lg bg-white p-4 shadow-sm transition-all duration-300 hover:shadow-md">
+            <div class="flex items-center">
+                <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-red-100">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                </div>
+                <div class="ml-4">
+                    <h2 class="font-semibold text-gray-500">Total Amount</h2>
+                    <p class="text-2xl font-bold text-gray-800">$@Model.TotalRefundAmount.ToString("N0")</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pending Refunds Card -->
+        <div class="overflow-hidden rounded-lg bg-white p-4 shadow-sm transition-all duration-300 hover:shadow-md">
+            <div class="flex items-center">
+                <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-amber-100">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                </div>
+                <div class="ml-4">
+                    <h2 class="font-semibold text-gray-500">Pending</h2>
+                    <p class="text-2xl font-bold text-gray-800">@Model.PendingRefunds</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Processing Time Card -->
+        <div class="overflow-hidden rounded-lg bg-white p-4 shadow-sm transition-all duration-300 hover:shadow-md">
+            <div class="flex items-center">
+                <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-green-100">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                </div>
+                <div class="ml-4">
+                    <h2 class="font-semibold text-gray-500">Avg. Processing Time</h2>
+                    <p class="text-2xl font-bold text-gray-800">@Model.AverageProcessingTime.ToString("N1") days</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Refund Information Sections -->
+    <div class="grid grid-cols-1 gap-6 lg:grid-cols-3">
+        <!-- Refund Status Chart -->
+        <div class="overflow-hidden rounded-lg bg-white p-6 shadow-sm">
+            <h2 class="mb-4 text-lg font-semibold text-gray-800">Refund Status</h2>
+            <div class="h-64">
+                <canvas id="refundStatusChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Refund Reasons Chart -->
+        <div class="overflow-hidden rounded-lg bg-white p-6 shadow-sm">
+            <h2 class="mb-4 text-lg font-semibold text-gray-800">Refund Reasons</h2>
+            <div class="h-64">
+                <canvas id="refundReasonsChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Refund Policy -->
+        <div class="overflow-hidden rounded-lg bg-white p-6 shadow-sm">
+            <h2 class="mb-4 text-lg font-semibold text-gray-800">Refund Policy</h2>
+            <div class="rounded-lg bg-blue-50 p-4 text-sm text-blue-800">
+                <p>@Model.RefundPolicy</p>
+            </div>
+            <div class="mt-4 space-y-4">
+                <div>
+                    <h3 class="text-sm font-medium text-gray-700">Approval Rate</h3>
+                    <div class="mt-2 flex items-center">
+                        <div class="h-2 w-full overflow-hidden rounded-full bg-gray-200">
+                            <div class="h-full rounded-full bg-green-500" style="width: @Model.ApprovalRate%"></div>
+                        </div>
+                        <span class="ml-2 text-sm font-medium text-gray-700">@Model.ApprovalRate.ToString("N1")%</span>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-sm font-medium text-gray-700">Rejection Rate</h3>
+                    <div class="mt-2 flex items-center">
+                        <div class="h-2 w-full overflow-hidden rounded-full bg-gray-200">
+                            <div class="h-full rounded-full bg-red-500" style="width: @Model.RejectionRate%"></div>
+                        </div>
+                        <span class="ml-2 text-sm font-medium text-gray-700">@Model.RejectionRate.ToString("N1")%</span>
+                    </div>
+                </div>
+                <div class="pt-4">
+                    <button type="button" class="inline-flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                        Edit Refund Policy
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Refund Requests Table -->
+    <div class="mt-6 overflow-hidden rounded-lg bg-white shadow-sm">
+        <div class="border-b border-gray-200 px-6 py-4 flex justify-between items-center">
+            <h2 class="text-lg font-medium text-gray-800">Refund Requests</h2>
+            <button class="flex items-center rounded-lg bg-emerald-600 px-4 py-2 text-sm font-medium text-white hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                </svg>
+                New Refund
+            </button>
+        </div>
+        <div class="overflow-x-auto">
+            <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                    <tr>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
+                            Refund ID
+                        </th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
+                            Order ID
+                        </th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
+                            Customer
+                        </th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
+                            Amount
+                        </th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
+                            Reason
+                        </th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
+                            Created Date
+                        </th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
+                            Status
+                        </th>
+                        <th scope="col" class="px-6 py-3 text-right text-xs font-medium uppercase tracking-wider text-gray-500">
+                            Actions
+                        </th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-200 bg-white">
+                    @foreach (var refund in Model.RefundRequests)
+                    {
+                        <tr class="hover:bg-gray-50">
+                            <td class="whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-900">
+                                #@refund.RefundId
+                            </td>
+                            <td class="whitespace-nowrap px-6 py-4 text-sm text-gray-500">
+                                #@refund.OrderId
+                            </td>
+                            <td class="whitespace-nowrap px-6 py-4 text-sm text-gray-900">
+                                @refund.CustomerName
+                            </td>
+                            <td class="whitespace-nowrap px-6 py-4 text-sm text-gray-900">
+                                $@refund.Amount.ToString("N2")
+                            </td>
+                            <td class="whitespace-nowrap px-6 py-4 text-sm text-gray-500">
+                                @refund.Reason
+                            </td>
+                            <td class="whitespace-nowrap px-6 py-4 text-sm text-gray-500">
+                                @refund.CreatedDate.ToString("MMM dd, yyyy")
+                            </td>
+                            <td class="whitespace-nowrap px-6 py-4">
+                                @if (refund.Status == "Approved")
+                                {
+                                    <span class="inline-flex rounded-full bg-green-100 px-2 text-xs font-semibold leading-5 text-green-800">
+                                        Approved
+                                    </span>
+                                }
+                                else if (refund.Status == "Processed")
+                                {
+                                    <span class="inline-flex rounded-full bg-blue-100 px-2 text-xs font-semibold leading-5 text-blue-800">
+                                        Processed
+                                    </span>
+                                }
+                                else if (refund.Status == "Rejected")
+                                {
+                                    <span class="inline-flex rounded-full bg-red-100 px-2 text-xs font-semibold leading-5 text-red-800">
+                                        Rejected
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span class="inline-flex rounded-full bg-yellow-100 px-2 text-xs font-semibold leading-5 text-yellow-800">
+                                        Pending
+                                    </span>
+                                }
+                            </td>
+                            <td class="whitespace-nowrap px-6 py-4 text-right text-sm font-medium">
+                                <div class="flex items-center justify-end space-x-3">
+                                    <a href="#" class="text-indigo-600 hover:text-indigo-900">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                        </svg>
+                                    </a>
+                                    @if (refund.Status == "Pending")
+                                    {
+                                        <a href="#" class="text-green-600 hover:text-green-900">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                            </svg>
+                                        </a>
+                                        <a href="#" class="text-red-600 hover:text-red-900">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                            </svg>
+                                        </a>
+                                    }
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="border-t border-gray-200 px-6 py-4">
+            <nav class="flex items-center justify-between">
+                <div class="flex-1 flex justify-between sm:hidden">
+                    <a href="#" class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+                        Previous
+                    </a>
+                    <a href="#" class="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+                        Next
+                    </a>
+                </div>
+                <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
+                    <div>
+                        <p class="text-sm text-gray-700">
+                            Showing <span class="font-medium">1</span> to <span class="font-medium">@Model.RefundRequests.Count</span> of <span class="font-medium">@Model.TotalRefunds</span> results
+                        </p>
+                    </div>
+                    <div>
+                        <nav class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
+                            <a href="#" class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+                                <span class="sr-only">Previous</span>
+                                <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                    <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+                                </svg>
+                            </a>
+                            <a href="#" aria-current="page" class="z-10 bg-indigo-50 border-indigo-500 text-indigo-600 relative inline-flex items-center px-4 py-2 border text-sm font-medium">
+                                1
+                            </a>
+                            <a href="#" class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium">
+                                2
+                            </a>
+                            <a href="#" class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium">
+                                3
+                            </a>
+                            <span class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700">
+                                ...
+                            </span>
+                            <a href="#" class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium">
+                                8
+                            </a>
+                            <a href="#" class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium">
+                                9
+                            </a>
+                            <a href="#" class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium">
+                                10
+                            </a>
+                            <a href="#" class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+                                <span class="sr-only">Next</span>
+                                <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                    <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                                </svg>
+                            </a>
+                        </nav>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Colors
+            const colors = {
+                primary: '#4F46E5',
+                secondary: '#10B981',
+                tertiary: '#F59E0B',
+                quaternary: '#EC4899',
+                info: '#3B82F6',
+                success: '#22C55E',
+                warning: '#F97316',
+                danger: '#EF4444',
+                light: '#F3F4F6',
+                dark: '#1F2937',
+            };
+
+            // Refund Status Chart
+            const refundStatusCtx = document.getElementById('refundStatusChart').getContext('2d');
+
+            new Chart(refundStatusCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Pending', 'Approved', 'Processed', 'Rejected'],
+                    datasets: [{
+                        data: [
+                            @Model.PendingRefunds,
+                            @(Model.ApprovedRefunds - Model.RefundRequests.Count(r => r.Status == "Processed")),
+                            @Model.RefundRequests.Count(r => r.Status == "Processed"),
+                            @Model.RejectedRefunds
+                        ],
+                        backgroundColor: [
+                            colors.warning,
+                            colors.success,
+                            colors.info,
+                            colors.danger
+                        ],
+                        borderWidth: 0,
+                        hoverOffset: 6
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '70%',
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                usePointStyle: true,
+                                padding: 20,
+                                font: {
+                                    size: 12
+                                }
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(255, 255, 255, 0.9)',
+                            titleColor: '#1F2937',
+                            bodyColor: '#4B5563',
+                            borderColor: '#E5E7EB',
+                            borderWidth: 1,
+                            padding: 12,
+                            boxPadding: 6,
+                            usePointStyle: true,
+                            callbacks: {
+                                label: function(context) {
+                                    const value = context.raw;
+                                    const total = context.dataset.data.reduce((acc, data) => acc + data, 0);
+                                    const percentage = Math.round((value / total) * 100);
+                                    return `${context.label}: ${value} (${percentage}%)`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Refund Reasons Chart
+            const refundReasonsCtx = document.getElementById('refundReasonsChart').getContext('2d');
+
+            new Chart(refundReasonsCtx, {
+                type: 'bar',
+                data: {
+                    labels: [@Html.Raw(string.Join(",", Model.RefundsByReason.Select(r => $"'{r.Reason}'")))],
+                    datasets: [{
+                        label: 'Refund Count',
+                        data: [@string.Join(",", Model.RefundsByReason.Select(r => r.Count))],
+                        backgroundColor: [
+                            colors.primary,
+                            colors.success,
+                            colors.warning,
+                            colors.danger,
+                            colors.info
+                        ],
+                        borderWidth: 0,
+                        borderRadius: 4,
+                        barThickness: 16,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    indexAxis: 'y',
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(255, 255, 255, 0.9)',
+                            titleColor: '#1F2937',
+                            bodyColor: '#4B5563',
+                            borderColor: '#E5E7EB',
+                            borderWidth: 1,
+                            padding: 12,
+                            boxPadding: 6,
+                            usePointStyle: true,
+                            callbacks: {
+                                label: function(context) {
+                                    return `Count: ${context.raw}`;
+                                },
+                                afterLabel: function(context) {
+                                    const idx = context.dataIndex;
+                                    const amounts = @Html.Raw(Json.Serialize(Model.RefundsByReason.Select(r => r.Amount).ToList()));
+                                    return `Amount: $${amounts[idx].toLocaleString()}`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            grid: {
+                                display: false
+                            }
+                        },
+                        y: {
+                            grid: {
+                                display: false
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+}

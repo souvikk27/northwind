@@ -1,0 +1,515 @@
+@model Northwind.ViewModels.TaxesViewModel
+@{
+    ViewData["Title"] = "Taxes";
+    Layout = "Layouts/_LayoutsDash";
+}
+
+<div class="ml-[250px] p-6">
+    <!-- Header Section -->
+    <div class="mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between">
+        <div>
+            <h1 class="text-2xl font-bold text-gray-800">Tax Information</h1>
+            <p class="text-gray-600">View and manage your tax information</p>
+        </div>
+        <div class="mt-4 flex items-center space-x-3 sm:mt-0">
+            <div class="relative inline-block">
+                <select class="appearance-none rounded-lg border border-gray-300 bg-white py-2 pl-4 pr-10 text-sm font-medium text-gray-700 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500">
+                    <option>@Model.CurrentYear</option>
+                    <option>@(Model.CurrentYear - 1)</option>
+                    <option>@(Model.CurrentYear - 2)</option>
+                </select>
+                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                    <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                    </svg>
+                </div>
+            </div>
+            <button class="flex items-center rounded-lg bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                </svg>
+                Export Tax Report
+            </button>
+        </div>
+    </div>
+
+    <!-- Summary Cards -->
+    <div class="mb-6 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <!-- Total Income Card -->
+        <div class="overflow-hidden rounded-lg bg-white p-4 shadow-sm transition-all duration-300 hover:shadow-md">
+            <div class="flex items-center">
+                <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-indigo-100">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                </div>
+                <div class="ml-4">
+                    <h2 class="font-semibold text-gray-500">Total Income</h2>
+                    <p class="text-2xl font-bold text-gray-800">$@Model.TotalIncome.ToString("N0")</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Total Tax Card -->
+        <div class="overflow-hidden rounded-lg bg-white p-4 shadow-sm transition-all duration-300 hover:shadow-md">
+            <div class="flex items-center">
+                <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-red-100">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
+                    </svg>
+                </div>
+                <div class="ml-4">
+                    <h2 class="font-semibold text-gray-500">Total Tax</h2>
+                    <p class="text-2xl font-bold text-gray-800">$@Model.TotalTax.ToString("N0")</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Effective Tax Rate Card -->
+        <div class="overflow-hidden rounded-lg bg-white p-4 shadow-sm transition-all duration-300 hover:shadow-md">
+            <div class="flex items-center">
+                <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-amber-100">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z" />
+                    </svg>
+                </div>
+                <div class="ml-4">
+                    <h2 class="font-semibold text-gray-500">Effective Tax Rate</h2>
+                    <p class="text-2xl font-bold text-gray-800">@Model.EffectiveTaxRate.ToString("N1")%</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Net Income Card -->
+        <div class="overflow-hidden rounded-lg bg-white p-4 shadow-sm transition-all duration-300 hover:shadow-md">
+            <div class="flex items-center">
+                <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-green-100">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
+                    </svg>
+                </div>
+                <div class="ml-4">
+                    <h2 class="font-semibold text-gray-500">Net Income</h2>
+                    <p class="text-2xl font-bold text-gray-800">$@Model.NetIncome.ToString("N0")</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tax Information Sections -->
+    <div class="grid grid-cols-1 gap-6 lg:grid-cols-3">
+        <!-- Tax Breakdown Chart -->
+        <div class="lg:col-span-2 overflow-hidden rounded-lg bg-white p-6 shadow-sm">
+            <h2 class="mb-4 text-lg font-semibold text-gray-800">Tax Breakdown</h2>
+            <div class="h-80">
+                <canvas id="taxBreakdownChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Tax Settings -->
+        <div class="overflow-hidden rounded-lg bg-white p-6 shadow-sm">
+            <h2 class="mb-4 text-lg font-semibold text-gray-800">Tax Settings</h2>
+            <div class="space-y-6">
+                <div>
+                    <h3 class="text-sm font-medium text-gray-500">Federal Filing Status</h3>
+                    <div class="mt-2">
+                        <select class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                            <option selected="@(Model.FederalFilingStatus == "Single")">Single</option>
+                            <option selected="@(Model.FederalFilingStatus == "Married Filing Jointly")">Married Filing Jointly</option>
+                            <option selected="@(Model.FederalFilingStatus == "Married Filing Separately")">Married Filing Separately</option>
+                            <option selected="@(Model.FederalFilingStatus == "Head of Household")">Head of Household</option>
+                            <option selected="@(Model.FederalFilingStatus == "Qualifying Widow(er)")">Qualifying Widow(er)</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-sm font-medium text-gray-500">Allowances</h3>
+                    <div class="mt-2">
+                        <input type="number" value="@Model.Allowances" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-sm font-medium text-gray-500">Estimated Annual Income</h3>
+                    <div class="mt-2">
+                        <div class="relative rounded-md shadow-sm">
+                            <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                                <span class="text-gray-500 sm:text-sm">$</span>
+                            </div>
+                            <input type="text" value="@Model.EstimatedAnnualIncome.ToString("N0")" class="block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-sm font-medium text-gray-500">Estimated Annual Tax</h3>
+                    <div class="mt-2">
+                        <div class="relative rounded-md shadow-sm">
+                            <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                                <span class="text-gray-500 sm:text-sm">$</span>
+                            </div>
+                            <input type="text" value="@Model.EstimatedAnnualTax.ToString("N0")" class="block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-sm font-medium text-gray-500">Year-to-Date Withholding</h3>
+                    <div class="mt-2">
+                        <div class="relative rounded-md shadow-sm">
+                            <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                                <span class="text-gray-500 sm:text-sm">$</span>
+                            </div>
+                            <input type="text" value="@Model.YearToDateWithholding.ToString("N0")" class="block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                        </div>
+                    </div>
+                </div>
+                <div class="pt-4">
+                    <button type="button" class="inline-flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                        Update Tax Settings
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Monthly Tax Trend -->
+        <div class="lg:col-span-2 overflow-hidden rounded-lg bg-white p-6 shadow-sm">
+            <h2 class="mb-4 text-lg font-semibold text-gray-800">Monthly Tax Trend</h2>
+            <div class="h-80">
+                <canvas id="monthlyTaxTrendChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Tax Documents -->
+        <div class="overflow-hidden rounded-lg bg-white p-6 shadow-sm">
+            <div class="mb-4 flex items-center justify-between">
+                <h2 class="text-lg font-semibold text-gray-800">Tax Documents</h2>
+                <a href="#" class="text-sm font-medium text-indigo-600 hover:text-indigo-800">View All</a>
+            </div>
+            <div class="space-y-4">
+                @foreach (var document in Model.TaxDocuments)
+                {
+                    <div class="flex items-center justify-between rounded-lg border border-gray-200 p-4">
+                        <div>
+                            <h3 class="text-sm font-medium text-gray-900">@document.DocumentName</h3>
+                            <p class="text-xs text-gray-500">@document.Year • @document.DateIssued.ToString("MMM dd, yyyy")</p>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            @if (document.Status == "Available" || document.Status == "Filed")
+                            {
+                                <span class="inline-flex items-center rounded-full bg-green-100 px-2.5 py-0.5 text-xs font-medium text-green-800">
+                                    @document.Status
+                                </span>
+                            }
+                            else if (document.Status == "Pending")
+                            {
+                                <span class="inline-flex items-center rounded-full bg-yellow-100 px-2.5 py-0.5 text-xs font-medium text-yellow-800">
+                                    @document.Status
+                                </span>
+                            }
+                            else
+                            {
+                                <span class="inline-flex items-center rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-800">
+                                    @document.Status
+                                </span>
+                            }
+                            <a href="@document.DownloadUrl" class="rounded-md p-1 text-gray-400 hover:bg-gray-100 hover:text-gray-500">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    <!-- Detailed Tax Table -->
+    <div class="mt-6 overflow-hidden rounded-lg bg-white shadow-sm">
+        <div class="border-b border-gray-200 px-6 py-4">
+            <h2 class="text-lg font-medium text-gray-800">Monthly Tax Details</h2>
+        </div>
+        <div class="overflow-x-auto">
+            <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                    <tr>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
+                            Month
+                        </th>
+                        <th scope="col" class="px-6 py-3 text-right text-xs font-medium uppercase tracking-wider text-gray-500">
+                            Income
+                        </th>
+                        <th scope="col" class="px-6 py-3 text-right text-xs font-medium uppercase tracking-wider text-gray-500">
+                            Federal Tax
+                        </th>
+                        <th scope="col" class="px-6 py-3 text-right text-xs font-medium uppercase tracking-wider text-gray-500">
+                            State Tax
+                        </th>
+                        <th scope="col" class="px-6 py-3 text-right text-xs font-medium uppercase tracking-wider text-gray-500">
+                            FICA
+                        </th>
+                        <th scope="col" class="px-6 py-3 text-right text-xs font-medium uppercase tracking-wider text-gray-500">
+                            Deductions
+                        </th>
+                        <th scope="col" class="px-6 py-3 text-right text-xs font-medium uppercase tracking-wider text-gray-500">
+                            Net Income
+                        </th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-200 bg-white">
+                    @foreach (var tax in Model.MonthlyTaxes)
+                    {
+                        <tr class="hover:bg-gray-50">
+                            <td class="whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-900">
+                                @tax.MonthYear
+                            </td>
+                            <td class="whitespace-nowrap px-6 py-4 text-right text-sm text-gray-500">
+                                $@tax.Income.ToString("N0")
+                            </td>
+                            <td class="whitespace-nowrap px-6 py-4 text-right text-sm text-gray-500">
+                                $@tax.FederalTax.ToString("N0")
+                            </td>
+                            <td class="whitespace-nowrap px-6 py-4 text-right text-sm text-gray-500">
+                                $@tax.StateTax.ToString("N0")
+                            </td>
+                            <td class="whitespace-nowrap px-6 py-4 text-right text-sm text-gray-500">
+                                $@((tax.SocialSecurity + tax.Medicare).ToString("N0"))
+                            </td>
+                            <td class="whitespace-nowrap px-6 py-4 text-right text-sm text-gray-500">
+                                $@tax.TotalDeductions.ToString("N0")
+                            </td>
+                            <td class="whitespace-nowrap px-6 py-4 text-right text-sm font-medium text-gray-900">
+                                $@tax.NetIncome.ToString("N0")
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+                <tfoot class="bg-gray-50">
+                    <tr>
+                        <th scope="row" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
+                            Total
+                        </th>
+                        <td class="whitespace-nowrap px-6 py-3 text-right text-xs font-medium text-gray-900">
+                            $@Model.TotalIncome.ToString("N0")
+                        </td>
+                        <td class="whitespace-nowrap px-6 py-3 text-right text-xs font-medium text-gray-900">
+                            $@Model.TotalFederalTax.ToString("N0")
+                        </td>
+                        <td class="whitespace-nowrap px-6 py-3 text-right text-xs font-medium text-gray-900">
+                            $@Model.TotalStateTax.ToString("N0")
+                        </td>
+                        <td class="whitespace-nowrap px-6 py-3 text-right text-xs font-medium text-gray-900">
+                            $@((Model.TotalSocialSecurity + Model.TotalMedicare).ToString("N0"))
+                        </td>
+                        <td class="whitespace-nowrap px-6 py-3 text-right text-xs font-medium text-gray-900">
+                            $@Model.TotalDeductions.ToString("N0")
+                        </td>
+                        <td class="whitespace-nowrap px-6 py-3 text-right text-xs font-medium text-gray-900">
+                            $@Model.NetIncome.ToString("N0")
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Colors
+            const colors = {
+                primary: '#4F46E5',
+                secondary: '#10B981',
+                tertiary: '#F59E0B',
+                quaternary: '#EC4899',
+                info: '#3B82F6',
+                success: '#22C55E',
+                warning: '#F97316',
+                danger: '#EF4444',
+                light: '#F3F4F6',
+                dark: '#1F2937',
+                // Gradients and transparencies
+                primaryTransparent: 'rgba(79, 70, 229, 0.2)',
+                secondaryTransparent: 'rgba(16, 185, 129, 0.2)',
+                tertiaryTransparent: 'rgba(245, 158, 11, 0.2)',
+                quaternaryTransparent: 'rgba(236, 72, 153, 0.2)',
+            };
+
+            // Tax Breakdown Chart
+            const taxBreakdownCtx = document.getElementById('taxBreakdownChart').getContext('2d');
+            
+            new Chart(taxBreakdownCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Federal Tax', 'State Tax', 'Social Security', 'Medicare', 'Retirement 401(k)', 'Health Insurance', 'Other Deductions', 'Net Income'],
+                    datasets: [{
+                        data: [
+                            @Model.TotalFederalTax,
+                            @Model.TotalStateTax,
+                            @Model.TotalSocialSecurity,
+                            @Model.TotalMedicare,
+                            @Model.TotalRetirement401k,
+                            @Model.TotalHealthInsurance,
+                            @Model.TotalOtherDeductions,
+                            @Model.NetIncome
+                        ],
+                        backgroundColor: [
+                            colors.danger,
+                            colors.warning,
+                            colors.info,
+                            colors.quaternary,
+                            colors.tertiary,
+                            colors.primary,
+                            colors.dark,
+                            colors.success
+                        ],
+                        borderWidth: 0,
+                        hoverOffset: 6
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '60%',
+                    plugins: {
+                        legend: {
+                            position: 'right',
+                            labels: {
+                                usePointStyle: true,
+                                padding: 20,
+                                font: {
+                                    size: 12
+                                }
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(255, 255, 255, 0.9)',
+                            titleColor: '#1F2937',
+                            bodyColor: '#4B5563',
+                            borderColor: '#E5E7EB',
+                            borderWidth: 1,
+                            padding: 12,
+                            boxPadding: 6,
+                            usePointStyle: true,
+                            callbacks: {
+                                label: function(context) {
+                                    const value = context.raw;
+                                    const total = context.dataset.data.reduce((acc, data) => acc + data, 0);
+                                    const percentage = Math.round((value / total) * 100);
+                                    return `${context.label}: $${value.toLocaleString()} (${percentage}%)`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Monthly Tax Trend Chart
+            const monthlyTaxTrendCtx = document.getElementById('monthlyTaxTrendChart').getContext('2d');
+            
+            new Chart(monthlyTaxTrendCtx, {
+                type: 'line',
+                data: {
+                    labels: [@Html.Raw(string.Join(",", Model.MonthlyTaxes.Select(m => $"'{m.MonthName} {m.Year}'")))],
+                    datasets: [
+                        {
+                            label: 'Income',
+                            data: [@string.Join(",", Model.MonthlyTaxes.Select(m => m.Income))],
+                            borderColor: colors.success,
+                            backgroundColor: colors.success,
+                            tension: 0.4,
+                            pointBackgroundColor: colors.success,
+                            pointBorderColor: '#fff',
+                            pointBorderWidth: 2,
+                            pointRadius: 4,
+                            pointHoverRadius: 6,
+                        },
+                        {
+                            label: 'Total Tax',
+                            data: [@string.Join(",", Model.MonthlyTaxes.Select(m => m.TotalTax))],
+                            borderColor: colors.danger,
+                            backgroundColor: colors.danger,
+                            tension: 0.4,
+                            pointBackgroundColor: colors.danger,
+                            pointBorderColor: '#fff',
+                            pointBorderWidth: 2,
+                            pointRadius: 4,
+                            pointHoverRadius: 6,
+                        },
+                        {
+                            label: 'Net Income',
+                            data: [@string.Join(",", Model.MonthlyTaxes.Select(m => m.NetIncome))],
+                            borderColor: colors.primary,
+                            backgroundColor: colors.primary,
+                            tension: 0.4,
+                            pointBackgroundColor: colors.primary,
+                            pointBorderColor: '#fff',
+                            pointBorderWidth: 2,
+                            pointRadius: 4,
+                            pointHoverRadius: 6,
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            labels: {
+                                usePointStyle: true,
+                                padding: 20,
+                                font: {
+                                    size: 12
+                                }
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(255, 255, 255, 0.9)',
+                            titleColor: '#1F2937',
+                            bodyColor: '#4B5563',
+                            borderColor: '#E5E7EB',
+                            borderWidth: 1,
+                            padding: 12,
+                            boxPadding: 6,
+                            usePointStyle: true,
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    label += '$' + context.parsed.y.toLocaleString();
+                                    return label;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            grid: {
+                                display: false
+                            },
+                            ticks: {
+                                maxRotation: 45,
+                                minRotation: 45
+                            }
+                        },
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                borderDash: [2, 4],
+                                color: '#E5E7EB'
+                            },
+                            ticks: {
+                                callback: function(value) {
+                                    return '$' + value.toLocaleString();
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+}

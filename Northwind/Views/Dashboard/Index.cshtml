@@ -4,275 +4,416 @@
 }
 
 <div class="ml-[250px] p-6">
-    <!-- Added left margin to account for sidebar width -->
-    <div class="grid-cols-1 mb-8 grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
+    <!-- Stats Cards -->
+    <div class="grid grid-cols-1 gap-6 mb-8 sm:grid-cols-2 xl:grid-cols-4">
         <!-- Total Orders Card -->
-        <div class="rounded-lg bg-white p-5 shadow-lg">
-            <div class="flex items-start justify-between">
-                <div class="flex flex-col items-start">
-                    <h3 class="mb-2 text-gray-500">Total Orders</h3>
-                    <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-pink-100">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="h-6 w-6 text-pink-500" viewBox="0 0 16 16">
+        <div class="relative overflow-hidden rounded-lg bg-white p-5 shadow-md transition-all duration-300 hover:shadow-lg">
+            <div class="absolute top-0 right-0 h-16 w-16 opacity-10">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="h-full w-full text-indigo-600" viewBox="0 0 16 16">
+                    <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"></path>
+                </svg>
+            </div>
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <div class="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-indigo-100">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="h-6 w-6 text-indigo-600" viewBox="0 0 16 16">
                             <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"></path>
                         </svg>
                     </div>
-                    <p class="text-blue-500">View more...</p>
+                    <div>
+                        <h3 class="text-sm font-medium uppercase text-gray-500">Total Orders</h3>
+                    </div>
                 </div>
-                <div class="mt-2 space-y-3 text-right">
-                    <p class="text-green-500">+12%</p>
-                    <h1 class="text-2xl font-semibold">421</h1>
+                <div class="text-right">
+                    <p class="inline-flex items-center rounded-full bg-green-100 px-2 py-1 text-xs font-medium text-green-600">
+                        <svg class="mr-1 h-3 w-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M12 7a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0V8.414l-4.293 4.293a1 1 0 01-1.414 0L8 10.414l-4.293 4.293a1 1 0 01-1.414-1.414l5-5a1 1 0 011.414 0L11 10.586 14.586 7H12z" clip-rule="evenodd"></path>
+                        </svg>
+                        12%
+                    </p>
+                    <h1 class="mt-2 text-3xl font-bold text-gray-800">421</h1>
+                    <p class="mt-1 text-sm text-gray-500">Last 30 days</p>
                 </div>
             </div>
         </div>
 
         <!-- Total Sales Card -->
-        <div class="rounded-lg bg-white p-5 shadow-lg">
-            <div class="flex items-start justify-between">
-                <div class="flex flex-col items-start">
-                    <h3 class="mb-2 text-gray-500">Total Sales</h3>
-                    <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-yellow-100">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="h-6 w-6 text-yellow-500" viewBox="0 0 16 16">
-                            <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v1h14V4a1 1 0 0 0-1-1H2zm13 4H1v5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V7z"></path>
-                            <path d="M2 10a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-1z"></path>
+        <div class="relative overflow-hidden rounded-lg bg-white p-5 shadow-md transition-all duration-300 hover:shadow-lg">
+            <div class="absolute top-0 right-0 h-16 w-16 opacity-10">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="h-full w-full text-emerald-600" viewBox="0 0 16 16">
+                    <path d="M1.5 2A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13zm1 2h3v1H2.5V4zm0 3h5v1H2.5V7zm0 3h11v1h-11v-1zm8-6h3v1h-3V4zm0 3h3v1h-3V7z"/>
+                </svg>
+            </div>
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <div class="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-emerald-100">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="h-6 w-6 text-emerald-600" viewBox="0 0 16 16">
+                            <path d="M1.5 2A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13zm1 2h3v1H2.5V4zm0 3h5v1H2.5V7zm0 3h11v1h-11v-1zm8-6h3v1h-3V4zm0 3h3v1h-3V7z"/>
                         </svg>
                     </div>
-                    <p class="text-blue-500">View more...</p>
+                    <div>
+                        <h3 class="text-sm font-medium uppercase text-gray-500">Total Sales</h3>
+                    </div>
                 </div>
-                <div class="mt-2 space-y-3 text-right">
-                    <p class="text-green-500">+15%</p>
-                    <h1 class="text-2xl font-semibold">$31K</h1>
+                <div class="text-right">
+                    <p class="inline-flex items-center rounded-full bg-green-100 px-2 py-1 text-xs font-medium text-green-600">
+                        <svg class="mr-1 h-3 w-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M12 7a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0V8.414l-4.293 4.293a1 1 0 01-1.414 0L8 10.414l-4.293 4.293a1 1 0 01-1.414-1.414l5-5a1 1 0 011.414 0L11 10.586 14.586 7H12z" clip-rule="evenodd"></path>
+                        </svg>
+                        15%
+                    </p>
+                    <h1 class="mt-2 text-3xl font-bold text-gray-800">$31K</h1>
+                    <p class="mt-1 text-sm text-gray-500">Last 30 days</p>
                 </div>
             </div>
         </div>
 
         <!-- New Customers Card -->
-        <div class="rounded-lg bg-white p-5 shadow-lg">
-            <div class="flex items-start justify-between">
-                <div class="flex flex-col items-start">
-                    <h3 class="mb-2 text-gray-500">New Customers</h3>
-                    <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-green-100">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="h-6 w-6 text-green-500" viewBox="0 0 16 16">
+        <div class="relative overflow-hidden rounded-lg bg-white p-5 shadow-md transition-all duration-300 hover:shadow-lg">
+            <div class="absolute top-0 right-0 h-16 w-16 opacity-10">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="h-full w-full text-amber-600" viewBox="0 0 16 16">
+                    <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"></path>
+                </svg>
+            </div>
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <div class="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-amber-100">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="h-6 w-6 text-amber-600" viewBox="0 0 16 16">
                             <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"></path>
                         </svg>
                     </div>
-                    <p class="text-blue-500">View more...</p>
+                    <div>
+                        <h3 class="text-sm font-medium uppercase text-gray-500">New Customers</h3>
+                    </div>
                 </div>
-                <div class="mt-2 space-y-3 text-right">
-                    <p class="text-red-500">-5%</p>
-                    <h1 class="text-2xl font-semibold">1.2K</h1>
+                <div class="text-right">
+                    <p class="inline-flex items-center rounded-full bg-red-100 px-2 py-1 text-xs font-medium text-red-600">
+                        <svg class="mr-1 h-3 w-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M12 13a1 1 0 100 2h5a1 1 0 001-1V9a1 1 0 10-2 0v2.586l-4.293-4.293a1 1 0 00-1.414 0L8 9.586 3.707 5.293a1 1 0 00-1.414 1.414l5 5a1 1 0 001.414 0L11 9.414 14.586 13H12z" clip-rule="evenodd"></path>
+                        </svg>
+                        5%
+                    </p>
+                    <h1 class="mt-2 text-3xl font-bold text-gray-800">1.2K</h1>
+                    <p class="mt-1 text-sm text-gray-500">Last 30 days</p>
                 </div>
             </div>
         </div>
 
-        <!-- Users Online Card -->
-        <div class="rounded-lg bg-white p-5 shadow-lg">
-            <div class="flex items-start justify-between">
-                <div class="flex flex-col items-start">
-                    <h3 class="mb-2 text-gray-500">Users Online</h3>
-                    <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-blue-100">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="h-6 w-6 text-blue-500" viewBox="0 0 16 16">
+        <!-- Active Users Card -->
+        <div class="relative overflow-hidden rounded-lg bg-white p-5 shadow-md transition-all duration-300 hover:shadow-lg">
+            <div class="absolute top-0 right-0 h-16 w-16 opacity-10">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="h-full w-full text-blue-600" viewBox="0 0 16 16">
+                    <path d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1h8zm-7.978-1A.261.261 0 0 1 7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002a.274.274 0 0 1-.014.002H7.022zM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0zM6.936 9.28a5.88 5.88 0 0 0-1.23-.247A7.35 7.35 0 0 0 5 9c-4 0-5 3-5 4 0 .667.333 1 1 1h4.216A2.238 2.238 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816zM4.92 10A5.493 5.493 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275zM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0zm3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4z"></path>
+                </svg>
+            </div>
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <div class="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="h-6 w-6 text-blue-600" viewBox="0 0 16 16">
                             <path d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1h8zm-7.978-1A.261.261 0 0 1 7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002a.274.274 0 0 1-.014.002H7.022zM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0zM6.936 9.28a5.88 5.88 0 0 0-1.23-.247A7.35 7.35 0 0 0 5 9c-4 0-5 3-5 4 0 .667.333 1 1 1h4.216A2.238 2.238 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816zM4.92 10A5.493 5.493 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275zM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0zm3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4z"></path>
                         </svg>
                     </div>
-                    <p class="text-blue-500">View more...</p>
+                    <div>
+                        <h3 class="text-sm font-medium uppercase text-gray-500">Active Users</h3>
+                    </div>
                 </div>
-                <div class="mt-2 space-y-2 text-right">
-                    <svg width="32px" height="32px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#18b116">
-
-                        <g id="SVGRepo_bgCarrier" stroke-width="0"/>
-
-                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
-
-                        <g id="SVGRepo_iconCarrier">
-                            <path d="M12 9.5C13.3807 9.5 14.5 10.6193 14.5 12C14.5 13.3807 13.3807 14.5 12 14.5C10.6193 14.5 9.5 13.3807 9.5 12C9.5 10.6193 10.6193 9.5 12 9.5Z" fill="#18b116"/>
-                        </g>
-
-                    </svg>
-                    <h1 class="text-2xl font-semibold">602</h1>
+                <div class="text-right">
+                    <p class="inline-flex items-center rounded-full bg-green-100 px-2 py-1 text-xs font-medium text-green-600">
+                        <span class="mr-1 h-2 w-2 rounded-full bg-green-600"></span>
+                        Online
+                    </p>
+                    <h1 class="mt-2 text-3xl font-bold text-gray-800">602</h1>
+                    <p class="mt-1 text-sm text-gray-500">Right now</p>
                 </div>
             </div>
         </div>
     </div>
-    <div class="grid-cols-1 grid gap-8 md:grid-cols-2">
-        <!-- Left column -->
-        <div class="space-y-4">
-            <!-- Monthly Sales Chart -->
-            <div class="rounded-lg bg-white p-4 shadow">
-                <h2 class="mb-2 text-lg font-semibold">Monthly Sales</h2>
-                <!-- Add your chart component here -->
-                <div style="height: 300px;">
-                    <canvas id="barChart"></canvas>
+    <!-- Main Dashboard Content -->
+    <div class="grid grid-cols-1 gap-6 lg:grid-cols-3">
+        <!-- Sales & Revenue Trends - Wider Chart -->
+        <div class="rounded-lg bg-white p-6 shadow-md lg:col-span-2">
+            <div class="mb-4 flex items-center justify-between">
+                <div>
+                    <h2 class="text-lg font-semibold text-gray-800">Sales & Revenue Trends</h2>
+                    <p class="text-sm text-gray-500">Monthly performance overview</p>
+                </div>
+                <div class="flex space-x-2">
+                    <button class="rounded-md bg-indigo-50 px-3 py-1 text-xs font-medium text-indigo-600 hover:bg-indigo-100">Monthly</button>
+                    <button class="rounded-md px-3 py-1 text-xs font-medium text-gray-600 hover:bg-gray-100">Quarterly</button>
+                    <button class="rounded-md px-3 py-1 text-xs font-medium text-gray-600 hover:bg-gray-100">Yearly</button>
                 </div>
             </div>
+            <div class="h-80">
+                <canvas id="salesChart"></canvas>
+            </div>
+        </div>
 
-            <!-- Platform Table -->
-            <div class="rounded-lg bg-white p-4 shadow">
-                <table class="w-full">
+        <!-- Orders by Category - Doughnut Chart -->
+        <div class="rounded-lg bg-white p-6 shadow-md">
+            <div class="mb-4 flex items-center justify-between">
+                <div>
+                    <h2 class="text-lg font-semibold text-gray-800">Orders by Category</h2>
+                    <p class="text-sm text-gray-500">Distribution across product categories</p>
+                </div>
+                <button class="rounded-full bg-gray-100 p-1 text-gray-600 hover:bg-gray-200">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
+                    </svg>
+                </button>
+            </div>
+            <div class="h-64">
+                <canvas id="categoryChart"></canvas>
+            </div>
+            <div class="mt-4 grid grid-cols-2 gap-2">
+                <div class="rounded-md bg-indigo-50 p-3 text-center">
+                    <p class="text-xs font-medium text-gray-500">Top Category</p>
+                    <p class="text-lg font-semibold text-gray-800">Beverages</p>
+                </div>
+                <div class="rounded-md bg-emerald-50 p-3 text-center">
+                    <p class="text-xs font-medium text-gray-500">Growth</p>
+                    <p class="text-lg font-semibold text-gray-800">+12.5%</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Marketing Channels Table -->
+        <div class="rounded-lg bg-white p-6 shadow-md">
+            <div class="mb-4 flex items-center justify-between">
+                <div>
+                    <h2 class="text-lg font-semibold text-gray-800">Marketing Channels</h2>
+                    <p class="text-sm text-gray-500">Performance by platform</p>
+                </div>
+                <button class="rounded-md bg-indigo-50 px-3 py-1 text-xs font-medium text-indigo-600 hover:bg-indigo-100">View All</button>
+            </div>
+            <div class="overflow-hidden">
+                <table class="min-w-full divide-y divide-gray-200">
                     <thead>
-                    <tr>
-                        <th class="py-2 text-left font-semibold">Platform</th>
-                        <th class="py-2 text-center font-semibold">Visitors</th>
-                        <th class="py-2 text-right font-semibold">Ads Budget</th>
-                    </tr>
+                        <tr>
+                            <th class="py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">Channel</th>
+                            <th class="py-3 text-center text-xs font-medium uppercase tracking-wider text-gray-500">Visitors</th>
+                            <th class="py-3 text-right text-xs font-medium uppercase tracking-wider text-gray-500">Budget</th>
+                        </tr>
                     </thead>
-                    <tbody>
-                    <tr>
-                        <td class="py-2">Facebook Ads</td>
-                        <td class="py-2 text-center">1,520</td>
-                        <td class="py-2">
-                            <div class="flex items-center justify-end">
-                                <div class="relative mr-2 h-2 w-full rounded-full bg-gray-200">
-                                    <div class="absolute left-0 top-0 h-2 rounded-full bg-blue-500" style="width: 78%;"></div>
+                    <tbody class="divide-y divide-gray-200">
+                        <tr class="hover:bg-gray-50">
+                            <td class="whitespace-nowrap py-4">
+                                <div class="flex items-center">
+                                    <div class="flex h-8 w-8 items-center justify-center rounded-md bg-blue-100 text-blue-600">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                                        </svg>
+                                    </div>
+                                    <div class="ml-3">
+                                        <p class="text-sm font-medium text-gray-900">Facebook</p>
+                                    </div>
                                 </div>
-                                <span class="w-12 text-right text-xs text-gray-500">78%</span>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="py-2">Google Ads</td>
-                        <td class="py-2 text-center">980</td>
-                        <td class="py-2">
-                            <div class="flex items-center justify-end">
-                                <div class="relative mr-2 h-2 w-full rounded-full bg-gray-200">
-                                    <div class="absolute left-0 top-0 h-2 rounded-full bg-pink-500" style="width: 65%;"></div>
+                            </td>
+                            <td class="whitespace-nowrap py-4 text-center text-sm text-gray-500">1,520</td>
+                            <td class="whitespace-nowrap py-4 text-right">
+                                <div class="flex items-center justify-end">
+                                    <div class="relative mr-2 h-2 w-24 rounded-full bg-gray-200">
+                                        <div class="absolute left-0 top-0 h-2 rounded-full bg-blue-500" style="width: 78%;"></div>
+                                    </div>
+                                    <span class="text-xs font-medium text-gray-700">78%</span>
                                 </div>
-                                <span class="w-12 text-right text-xs text-gray-500">65%</span>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="py-2">Microsoft Ads</td>
-                        <td class="py-2 text-center">540</td>
-                        <td class="py-2">
-                            <div class="flex items-center justify-end">
-                                <div class="relative mr-2 h-2 w-full rounded-full bg-gray-200">
-                                    <div class="absolute left-0 top-0 h-2 rounded-full bg-yellow-500" style="width: 55%;"></div>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-gray-50">
+                            <td class="whitespace-nowrap py-4">
+                                <div class="flex items-center">
+                                    <div class="flex h-8 w-8 items-center justify-center rounded-md bg-red-100 text-red-600">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M21.582 7.643A2.981 2.981 0 0 0 20.574 6.7c-1.092-.79-2.291-.96-2.291-.96s-6.292-.443-9.99-.443-9.99.442-9.99.442-.93.14-1.72.645c-.791.505-1.103 1.416-1.103 1.416s-.443 2.306-.443 4.612v1.26c0 2.307.443 4.613.443 4.613s.14.93.645 1.72c.505.791 1.416 1.103 1.416 1.103s2.307.443 4.613.443h.886c2.307 0 4.613-.443 4.613-.443s.93-.14 1.72-.645c.791-.505 1.103-1.416 1.103-1.416s.443-2.307.443-4.613v-1.26c0-2.306-.443-4.612-.443-4.612s-.141-.93-.646-1.72zm-12.054 8.21v-7.492l6.964 3.746-6.964 3.747z"/>
+                                        </svg>
+                                    </div>
+                                    <div class="ml-3">
+                                        <p class="text-sm font-medium text-gray-900">YouTube</p>
+                                    </div>
                                 </div>
-                                <span class="w-12 text-right text-xs text-gray-500">55%</span>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="py-2">TikTok Ads</td>
-                        <td class="py-2 text-center">350</td>
-                        <td class="py-2">
-                            <div class="flex items-center justify-end">
-                                <div class="relative mr-2 h-2 w-full rounded-full bg-gray-200">
-                                    <div class="absolute left-0 top-0 h-2 rounded-full bg-black" style="width: 40%;"></div>
+                            </td>
+                            <td class="whitespace-nowrap py-4 text-center text-sm text-gray-500">980</td>
+                            <td class="whitespace-nowrap py-4 text-right">
+                                <div class="flex items-center justify-end">
+                                    <div class="relative mr-2 h-2 w-24 rounded-full bg-gray-200">
+                                        <div class="absolute left-0 top-0 h-2 rounded-full bg-red-500" style="width: 65%;"></div>
+                                    </div>
+                                    <span class="text-xs font-medium text-gray-700">65%</span>
                                 </div>
-                                <span class="w-12 text-right text-xs text-gray-500">40%</span>
-                            </div>
-                        </td>
-                    </tr>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-gray-50">
+                            <td class="whitespace-nowrap py-4">
+                                <div class="flex items-center">
+                                    <div class="flex h-8 w-8 items-center justify-center rounded-md bg-green-100 text-green-600">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8A1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5a5 5 0 0 1-5 5a5 5 0 0 1-5-5a5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3Z"/>
+                                        </svg>
+                                    </div>
+                                    <div class="ml-3">
+                                        <p class="text-sm font-medium text-gray-900">Instagram</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="whitespace-nowrap py-4 text-center text-sm text-gray-500">540</td>
+                            <td class="whitespace-nowrap py-4 text-right">
+                                <div class="flex items-center justify-end">
+                                    <div class="relative mr-2 h-2 w-24 rounded-full bg-gray-200">
+                                        <div class="absolute left-0 top-0 h-2 rounded-full bg-green-500" style="width: 55%;"></div>
+                                    </div>
+                                    <span class="text-xs font-medium text-gray-700">55%</span>
+                                </div>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
         </div>
 
-        <!-- Right column -->
-        <div>
-            <!-- Traffic Source Pie Chart -->
-            <div class="rounded-lg bg-white p-4 shadow">
-                <h2 class="mb-2 text-lg font-semibold">Traffic Source</h2>
-                <!-- Add your pie chart component here -->
-                <div style="height: 600px;">
-                    <canvas id="pieChart"></canvas>
+        <!-- Orders Trend Chart -->
+        <div class="rounded-lg bg-white p-6 shadow-md lg:col-span-2">
+            <div class="mb-4 flex items-center justify-between">
+                <div>
+                    <h2 class="text-lg font-semibold text-gray-800">Orders Trend</h2>
+                    <p class="text-sm text-gray-500">Monthly order volume</p>
+                </div>
+                <div class="rounded-md bg-green-100 px-2 py-1 text-xs font-medium text-green-800">
+                    <span>+8.4% from last year</span>
+                </div>
+            </div>
+            <div class="h-72">
+                <canvas id="ordersTrendChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Recent Orders -->
+        <div class="rounded-lg bg-white p-6 shadow-md">
+            <div class="mb-4 flex items-center justify-between">
+                <div>
+                    <h2 class="text-lg font-semibold text-gray-800">Recent Orders</h2>
+                    <p class="text-sm text-gray-500">Last 24 hours</p>
+                </div>
+                <button class="rounded-md bg-indigo-50 px-3 py-1 text-xs font-medium text-indigo-600 hover:bg-indigo-100">View All</button>
+            </div>
+            <div class="space-y-4">
+                <div class="flex items-center justify-between rounded-lg border border-gray-100 bg-gray-50 p-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="flex h-10 w-10 items-center justify-center rounded-full bg-indigo-100 text-indigo-600">
+                            <span class="text-sm font-bold">SP</span>
+                        </div>
+                        <div>
+                            <p class="text-sm font-medium text-gray-900">Speedy Express</p>
+                            <p class="text-xs text-gray-500">Order #10248</p>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <p class="text-sm font-semibold text-gray-900">$1,250.00</p>
+                        <p class="text-xs text-gray-500">2 hours ago</p>
+                    </div>
+                </div>
+                <div class="flex items-center justify-between rounded-lg border border-gray-100 bg-gray-50 p-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="flex h-10 w-10 items-center justify-center rounded-full bg-emerald-100 text-emerald-600">
+                            <span class="text-sm font-bold">US</span>
+                        </div>
+                        <div>
+                            <p class="text-sm font-medium text-gray-900">United Package</p>
+                            <p class="text-xs text-gray-500">Order #10249</p>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <p class="text-sm font-semibold text-gray-900">$736.40</p>
+                        <p class="text-xs text-gray-500">5 hours ago</p>
+                    </div>
+                </div>
+                <div class="flex items-center justify-between rounded-lg border border-gray-100 bg-gray-50 p-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="flex h-10 w-10 items-center justify-center rounded-full bg-amber-100 text-amber-600">
+                            <span class="text-sm font-bold">FS</span>
+                        </div>
+                        <div>
+                            <p class="text-sm font-medium text-gray-900">Federal Shipping</p>
+                            <p class="text-xs text-gray-500">Order #10250</p>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <p class="text-sm font-semibold text-gray-900">$1,832.80</p>
+                        <p class="text-xs text-gray-500">8 hours ago</p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Container for the datamap and chart -->
-    <div class="mb-6 mt-6 rounded-lg bg-white p-6 shadow-md">
-        <h2 class="mb-4 text-2xl font-semibold">Sessions by Country</h2>
-        <div style="display: flex; justify-content: space-between; align-items: stretch; height: 400px;">
-            <div id="datamap" style="width: 55%; height: 100%;"></div>
-            <div style="width: 40%; height: 100%;">
-                <canvas id="countryChart"></canvas>
+    <!-- World Map Section -->
+    <div class="mt-6 rounded-lg bg-white p-6 shadow-md">
+        <div class="mb-4 flex items-center justify-between">
+            <div>
+                <h2 class="text-lg font-semibold text-gray-800">Global Sales Distribution</h2>
+                <p class="text-sm text-gray-500">Orders by country</p>
+            </div>
+            <div class="flex space-x-2">
+                <button class="rounded-md bg-indigo-50 px-3 py-1 text-xs font-medium text-indigo-600 hover:bg-indigo-100">This Month</button>
+                <button class="rounded-md px-3 py-1 text-xs font-medium text-gray-600 hover:bg-gray-100">This Year</button>
+            </div>
+        </div>
+        <div class="grid grid-cols-1 gap-6 lg:grid-cols-4">
+            <div class="lg:col-span-3">
+                <div class="h-[400px]" id="worldMap"></div>
+            </div>
+            <div class="space-y-4">
+                <div class="rounded-lg border border-gray-100 bg-gray-50 p-4">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-3">
+                            <div class="flex h-8 w-8 items-center justify-center rounded-full bg-indigo-100 text-indigo-600">
+                                <span class="text-xs font-bold">US</span>
+                            </div>
+                            <p class="text-sm font-medium text-gray-900">United States</p>
+                        </div>
+                        <p class="text-sm font-semibold text-gray-900">$38,290</p>
+                    </div>
+                    <div class="mt-3">
+                        <div class="relative h-2 w-full rounded-full bg-gray-200">
+                            <div class="absolute left-0 top-0 h-2 rounded-full bg-indigo-600" style="width: 85%;"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="rounded-lg border border-gray-100 bg-gray-50 p-4">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-3">
+                            <div class="flex h-8 w-8 items-center justify-center rounded-full bg-emerald-100 text-emerald-600">
+                                <span class="text-xs font-bold">DE</span>
+                            </div>
+                            <p class="text-sm font-medium text-gray-900">Germany</p>
+                        </div>
+                        <p class="text-sm font-semibold text-gray-900">$29,830</p>
+                    </div>
+                    <div class="mt-3">
+                        <div class="relative h-2 w-full rounded-full bg-gray-200">
+                            <div class="absolute left-0 top-0 h-2 rounded-full bg-emerald-600" style="width: 65%;"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="rounded-lg border border-gray-100 bg-gray-50 p-4">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-3">
+                            <div class="flex h-8 w-8 items-center justify-center rounded-full bg-amber-100 text-amber-600">
+                                <span class="text-xs font-bold">UK</span>
+                            </div>
+                            <p class="text-sm font-medium text-gray-900">United Kingdom</p>
+                        </div>
+                        <p class="text-sm font-semibold text-gray-900">$25,430</p>
+                    </div>
+                    <div class="mt-3">
+                        <div class="relative h-2 w-full rounded-full bg-gray-200">
+                            <div class="absolute left-0 top-0 h-2 rounded-full bg-amber-600" style="width: 55%;"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
 @section Scripts {
-    <script src="/js/dashchart.js"></script>
-    <script>
-	document.addEventListener("DOMContentLoaded", function () {
-		const colors = {
-			high: "#5e72e4",
-			medium: "#11cdef",
-			low: "#fb6340",
-			veryLow: "#ffd600"
-		};
-
-		// Initialize Datamap
-		const map = new Datamap({
-			element: document.getElementById('datamap'),
-			fills: {
-				defaultFill: "#f0f0f0",
-				high: colors.high,
-				medium: colors.medium,
-				low: colors.low,
-				veryLow: colors.veryLow
-			},
-			data: {
-				IND: { fillKey: "high" },
-				USA: { fillKey: "high" },
-				ESP: { fillKey: "medium" },
-				GBR: { fillKey: "medium" },
-				RUS: { fillKey: "low" },
-				IDN: { fillKey: "low" },
-				BRA: { fillKey: "veryLow" },
-				ARG: { fillKey: "veryLow" }
-			},
-			geographyConfig: {
-				highlightOnHover: true,
-				popupTemplate: function (geography, data) {
-					return '<div class="hoverinfo"><strong>' + geography.properties.name + '</strong></div>';
-				}
-			}
-		});
-
-		// Initialize Chart.js Bar Chart
-		const ctx = document.getElementById('countryChart').getContext('2d');
-		const countryChart = new Chart(ctx, {
-			type: 'bar',
-			data: {
-				labels: ['IN', 'US', 'ES', 'UK', 'RU', 'ID', 'BR', 'AR'],
-				datasets: [{
-					label: 'Sessions by Country',
-					data: [30, 25, 20, 15, 10, 5, 3, 1],
-					backgroundColor: [
-						colors.high,
-						colors.high,
-						colors.medium,
-						colors.medium,
-						colors.low,
-						colors.low,
-						colors.veryLow,
-						colors.veryLow
-					],
-					borderColor: [
-						colors.high,
-						colors.high,
-						colors.medium,
-						colors.medium,
-						colors.low,
-						colors.low,
-						colors.veryLow,
-						colors.veryLow
-					],
-					borderWidth: 1
-				}]
-			},
-			options: {
-				scales: {
-					y: {
-						beginAtZero: true
-					}
-				}
-			}
-		});
-	});
-</script>
+    <script src="/js/dashboard.js"></script>
 }

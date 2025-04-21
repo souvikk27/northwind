@@ -1,0 +1,198 @@
+@model Northwind.ViewModels.SuppliersViewModel
+@{
+    ViewData["Title"] = "Suppliers";
+    Layout = "Layouts/_LayoutsDash";
+}
+
+<div class="ml-[250px] p-6">
+    <!-- Header Section -->
+    <div class="mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between">
+        <h1 class="text-2xl font-bold text-gray-800">Supplier Management</h1>
+        <div class="mt-4 flex items-center space-x-3 sm:mt-0">
+            <form asp-controller="Dashboard" asp-action="Suppliers" method="get" class="flex items-center">
+                <div class="relative">
+                    <input type="text" name="searchString" value="@Model.SearchString" class="w-64 rounded-lg border border-gray-300 py-2 pl-10 pr-4 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500" placeholder="Search suppliers...">
+                    <div class="absolute inset-y-0 left-0 flex items-center pl-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                </div>
+                <button type="submit" class="ml-2 rounded-lg bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                    Search
+                </button>
+            </form>
+            <button class="flex items-center rounded-lg bg-emerald-600 px-4 py-2 text-sm font-medium text-white hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd" />
+                </svg>
+                New Supplier
+            </button>
+        </div>
+    </div>
+
+    <!-- Stats Cards -->
+    <div class="mb-6 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <!-- Total Suppliers Card -->
+        <div class="overflow-hidden rounded-lg bg-white p-4 shadow-sm transition-all duration-300 hover:shadow-md">
+            <div class="flex items-center">
+                <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-indigo-100">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                    </svg>
+                </div>
+                <div class="ml-4">
+                    <h2 class="font-semibold text-gray-500">Total Suppliers</h2>
+                    <p class="text-2xl font-bold text-gray-800">@Model.TotalSuppliers</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Top Countries Card -->
+        <div class="overflow-hidden rounded-lg bg-white p-4 shadow-sm transition-all duration-300 hover:shadow-md">
+            <div class="flex items-center">
+                <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-emerald-100">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                </div>
+                <div class="ml-4">
+                    <h2 class="font-semibold text-gray-500">Top Country</h2>
+                    <p class="text-2xl font-bold text-gray-800">@(Model.Suppliers.GroupBy(s => s.Country).OrderByDescending(g => g.Count()).FirstOrDefault()?.Key ?? "N/A")</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Total Products Card -->
+        <div class="overflow-hidden rounded-lg bg-white p-4 shadow-sm transition-all duration-300 hover:shadow-md">
+            <div class="flex items-center">
+                <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-amber-100">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                    </svg>
+                </div>
+                <div class="ml-4">
+                    <h2 class="font-semibold text-gray-500">Total Products</h2>
+                    <p class="text-2xl font-bold text-gray-800">@Model.Suppliers.Sum(s => s.ProductCount)</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Average Products Card -->
+        <div class="overflow-hidden rounded-lg bg-white p-4 shadow-sm transition-all duration-300 hover:shadow-md">
+            <div class="flex items-center">
+                <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-blue-100">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                    </svg>
+                </div>
+                <div class="ml-4">
+                    <h2 class="font-semibold text-gray-500">Avg. Products</h2>
+                    <p class="text-2xl font-bold text-gray-800">@(Model.Suppliers.Any() ? Math.Round((double)Model.Suppliers.Sum(s => s.ProductCount) / Model.Suppliers.Count, 1) : 0)</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Suppliers Table -->
+    <div class="overflow-hidden rounded-lg bg-white shadow-sm">
+        <div class="overflow-x-auto">
+            <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                    <tr>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
+                            Company
+                        </th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
+                            Contact
+                        </th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
+                            Country
+                        </th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
+                            Phone
+                        </th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
+                            Products
+                        </th>
+                        <th scope="col" class="px-6 py-3 text-right text-xs font-medium uppercase tracking-wider text-gray-500">
+                            Actions
+                        </th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-200 bg-white">
+                    @foreach (var supplier in Model.Suppliers)
+                    {
+                        <tr class="hover:bg-gray-50">
+                            <td class="whitespace-nowrap px-6 py-4">
+                                <div class="flex items-center">
+                                    <div class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-indigo-100 text-indigo-700">
+                                        <span class="text-sm font-medium">@supplier.CompanyName.Substring(0, 1)</span>
+                                    </div>
+                                    <div class="ml-4">
+                                        <div class="text-sm font-medium text-gray-900">@supplier.CompanyName</div>
+                                        <div class="text-sm text-gray-500">ID: @supplier.SupplierID</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="whitespace-nowrap px-6 py-4">
+                                <div class="text-sm text-gray-900">@supplier.ContactName</div>
+                                <div class="text-sm text-gray-500">@supplier.ContactTitle</div>
+                            </td>
+                            <td class="whitespace-nowrap px-6 py-4">
+                                <div class="text-sm text-gray-900">@supplier.Country</div>
+                            </td>
+                            <td class="whitespace-nowrap px-6 py-4">
+                                <div class="text-sm text-gray-900">@supplier.Phone</div>
+                            </td>
+                            <td class="whitespace-nowrap px-6 py-4">
+                                <div class="text-sm text-gray-900">@supplier.ProductCount</div>
+                            </td>
+                            <td class="whitespace-nowrap px-6 py-4 text-right text-sm font-medium">
+                                <div class="flex items-center justify-end space-x-3">
+                                    <a href="#" class="text-indigo-600 hover:text-indigo-900">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                        </svg>
+                                    </a>
+                                    <a href="#" class="text-indigo-600 hover:text-indigo-900">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                                        </svg>
+                                    </a>
+                                    <a href="#" class="text-red-600 hover:text-red-900">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                        </svg>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Pagination -->
+    <div class="mt-6 flex items-center justify-between">
+        <div class="text-sm text-gray-700">
+            Showing <span class="font-medium">@(((Model.CurrentPage - 1) * 10) + 1)</span> to <span class="font-medium">@Math.Min(Model.CurrentPage * 10, Model.TotalSuppliers)</span> of <span class="font-medium">@Model.TotalSuppliers</span> suppliers
+        </div>
+        <div class="flex space-x-2">
+            @if (Model.CurrentPage > 1)
+            {
+                <a href="@Url.Action("Suppliers", new { page = Model.CurrentPage - 1, searchString = Model.SearchString })" class="inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">
+                    Previous
+                </a>
+            }
+            @if (Model.CurrentPage < Model.TotalPages)
+            {
+                <a href="@Url.Action("Suppliers", new { page = Model.CurrentPage + 1, searchString = Model.SearchString })" class="inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">
+                    Next
+                </a>
+            }
+        </div>
+    </div>
+</div>

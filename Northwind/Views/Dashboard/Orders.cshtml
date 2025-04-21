@@ -1,0 +1,206 @@
+@model Northwind.ViewModels.OrdersViewModel
+@{
+    ViewData["Title"] = "Orders";
+    Layout = "Layouts/_LayoutsDash";
+}
+
+<div class="ml-[250px] p-6">
+    <!-- Header Section -->
+    <div class="mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between">
+        <h1 class="text-2xl font-bold text-gray-800">Orders Management</h1>
+        <div class="mt-4 flex items-center space-x-3 sm:mt-0">
+            <form asp-controller="Dashboard" asp-action="Orders" method="get" class="flex items-center">
+                <div class="relative">
+                    <input type="text" name="searchString" value="@Model.SearchString" class="w-64 rounded-lg border border-gray-300 py-2 pl-10 pr-4 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500" placeholder="Search orders...">
+                    <div class="absolute inset-y-0 left-0 flex items-center pl-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                </div>
+                <button type="submit" class="ml-2 rounded-lg bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                    Search
+                </button>
+            </form>
+            <button class="flex items-center rounded-lg bg-emerald-600 px-4 py-2 text-sm font-medium text-white hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd" />
+                </svg>
+                New Order
+            </button>
+        </div>
+    </div>
+
+    <!-- Stats Cards -->
+    <div class="mb-6 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <!-- Total Orders Card -->
+        <div class="overflow-hidden rounded-lg bg-white p-4 shadow-sm transition-all duration-300 hover:shadow-md">
+            <div class="flex items-center">
+                <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-indigo-100">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                    </svg>
+                </div>
+                <div class="ml-4">
+                    <h2 class="font-semibold text-gray-500">Total Orders</h2>
+                    <p class="text-2xl font-bold text-gray-800">@Model.TotalOrders</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pending Orders Card -->
+        <div class="overflow-hidden rounded-lg bg-white p-4 shadow-sm transition-all duration-300 hover:shadow-md">
+            <div class="flex items-center">
+                <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-yellow-100">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-yellow-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                </div>
+                <div class="ml-4">
+                    <h2 class="font-semibold text-gray-500">Pending</h2>
+                    <p class="text-2xl font-bold text-gray-800">@Model.Orders.Count(o => o.Status == "Pending")</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Shipped Orders Card -->
+        <div class="overflow-hidden rounded-lg bg-white p-4 shadow-sm transition-all duration-300 hover:shadow-md">
+            <div class="flex items-center">
+                <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-green-100">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                </div>
+                <div class="ml-4">
+                    <h2 class="font-semibold text-gray-500">Shipped</h2>
+                    <p class="text-2xl font-bold text-gray-800">@Model.Orders.Count(o => o.Status == "Shipped")</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Delayed Orders Card -->
+        <div class="overflow-hidden rounded-lg bg-white p-4 shadow-sm transition-all duration-300 hover:shadow-md">
+            <div class="flex items-center">
+                <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-red-100">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                    </svg>
+                </div>
+                <div class="ml-4">
+                    <h2 class="font-semibold text-gray-500">Delayed</h2>
+                    <p class="text-2xl font-bold text-gray-800">@Model.Orders.Count(o => o.Status == "Delayed")</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Orders Table -->
+    <div class="overflow-hidden rounded-lg bg-white shadow-sm">
+        <div class="overflow-x-auto">
+            <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                    <tr>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
+                            Order ID
+                        </th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
+                            Customer
+                        </th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
+                            Employee
+                        </th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
+                            Order Date
+                        </th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
+                            Status
+                        </th>
+                        <th scope="col" class="px-6 py-3 text-right text-xs font-medium uppercase tracking-wider text-gray-500">
+                            Actions
+                        </th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-200 bg-white">
+                    @foreach (var order in Model.Orders)
+                    {
+                        <tr class="hover:bg-gray-50">
+                            <td class="whitespace-nowrap px-6 py-4">
+                                <div class="text-sm font-medium text-gray-900">#@order.OrderID</div>
+                            </td>
+                            <td class="whitespace-nowrap px-6 py-4">
+                                <div class="text-sm text-gray-900">@order.CustomerName</div>
+                            </td>
+                            <td class="whitespace-nowrap px-6 py-4">
+                                <div class="text-sm text-gray-900">@order.EmployeeName</div>
+                            </td>
+                            <td class="whitespace-nowrap px-6 py-4">
+                                <div class="text-sm text-gray-900">@(order.OrderDate?.ToString("MMM dd, yyyy") ?? "N/A")</div>
+                            </td>
+                            <td class="whitespace-nowrap px-6 py-4">
+                                @if (order.Status == "Shipped")
+                                {
+                                    <span class="inline-flex rounded-full bg-green-100 px-2 text-xs font-semibold leading-5 text-green-800">
+                                        Shipped
+                                    </span>
+                                }
+                                else if (order.Status == "Delayed")
+                                {
+                                    <span class="inline-flex rounded-full bg-red-100 px-2 text-xs font-semibold leading-5 text-red-800">
+                                        Delayed
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span class="inline-flex rounded-full bg-yellow-100 px-2 text-xs font-semibold leading-5 text-yellow-800">
+                                        Pending
+                                    </span>
+                                }
+                            </td>
+                            <td class="whitespace-nowrap px-6 py-4 text-right text-sm font-medium">
+                                <div class="flex items-center justify-end space-x-3">
+                                    <a href="#" class="text-indigo-600 hover:text-indigo-900">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                        </svg>
+                                    </a>
+                                    <a href="#" class="text-indigo-600 hover:text-indigo-900">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                                        </svg>
+                                    </a>
+                                    <a href="#" class="text-red-600 hover:text-red-900">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                        </svg>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Pagination -->
+    <div class="mt-6 flex items-center justify-between">
+        <div class="text-sm text-gray-700">
+            Showing <span class="font-medium">@(((Model.CurrentPage - 1) * 10) + 1)</span> to <span class="font-medium">@Math.Min(Model.CurrentPage * 10, Model.TotalOrders)</span> of <span class="font-medium">@Model.TotalOrders</span> orders
+        </div>
+        <div class="flex space-x-2">
+            @if (Model.CurrentPage > 1)
+            {
+                <a href="@Url.Action("Orders", new { page = Model.CurrentPage - 1, searchString = Model.SearchString })" class="inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">
+                    Previous
+                </a>
+            }
+            @if (Model.CurrentPage < Model.TotalPages)
+            {
+                <a href="@Url.Action("Orders", new { page = Model.CurrentPage + 1, searchString = Model.SearchString })" class="inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">
+                    Next
+                </a>
+            }
+        </div>
+    </div>
+</div>
