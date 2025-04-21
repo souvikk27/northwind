@@ -11,8 +11,11 @@ namespace Northwind.Controllers
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly RoleManager<IdentityRole> _roleManager;
 
-        public AuthController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager,
-            RoleManager<IdentityRole> roleManager)
+        public AuthController(
+            UserManager<ApplicationUser> userManager,
+            SignInManager<ApplicationUser> signInManager,
+            RoleManager<IdentityRole> roleManager
+        )
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -37,14 +40,19 @@ namespace Northwind.Controllers
         {
             if (ModelState.IsValid)
             {
-                var result = await _signInManager.PasswordSignInAsync(model.Username, model.Password, false,
-                    lockoutOnFailure: false);
+                var result = await _signInManager.PasswordSignInAsync(
+                    model.Username,
+                    model.Password,
+                    false,
+                    lockoutOnFailure: false
+                );
                 if (result.Succeeded)
                 {
                     return RedirectToAction("Index", "Home");
                 }
 
-                TempData["ErrorMessage"] = "Invalid login attempt. Please try again with valid credentials.";
+                TempData["ErrorMessage"] =
+                    "Invalid login attempt. Please try again with valid credentials.";
             }
 
             return View(model);
@@ -67,7 +75,7 @@ namespace Northwind.Controllers
                     Email = registerVm.Email,
                     FirstName = registerVm.FirstName,
                     LastName = registerVm.LastName,
-                    EmailConfirmed = true
+                    EmailConfirmed = true,
                 };
                 var result = await _userManager.CreateAsync(user, registerVm.Password);
                 if (result.Succeeded)

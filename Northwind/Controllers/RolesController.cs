@@ -44,7 +44,7 @@ namespace Northwind.Controllers
                 CurrentPage = page,
                 TotalPages = totalPages,
                 TotalRoles = totalRoles,
-                SearchString = searchString
+                SearchString = searchString,
             };
 
             return View(viewModel);
@@ -137,7 +137,8 @@ namespace Northwind.Controllers
         private IActionResult HandleUpdateFailure(string error, IdentityRole role)
         {
             ModelState.AddModelError("", error);
-            TempData["ErrorMessage"] = "There was an error updating the role. Please check the form and try again.";
+            TempData["ErrorMessage"] =
+                "There was an error updating the role. Please check the form and try again.";
             return View(role);
         }
     }

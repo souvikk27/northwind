@@ -12,8 +12,11 @@ namespace Northwind.Controllers
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IResourceService _resourceService;
 
-        public ResourcesController(IActionDescriptorCollectionProvider actionDescriptorCollectionProvider,
-            RoleManager<IdentityRole> roleManager, IResourceService resourceService)
+        public ResourcesController(
+            IActionDescriptorCollectionProvider actionDescriptorCollectionProvider,
+            RoleManager<IdentityRole> roleManager,
+            IResourceService resourceService
+        )
         {
             _actionDescriptorCollectionProvider = actionDescriptorCollectionProvider;
             _roleManager = roleManager;
@@ -25,19 +28,17 @@ namespace Northwind.Controllers
         public async Task<IActionResult> Scopes(string id)
         {
             var result = await _resourceService.GetScopesResult(id);
-            return result.IsSuccess
-                ? View(result.Value)
-                : BadRequest(result.Error);
+            return result.IsSuccess ? View(result.Value) : BadRequest(result.Error);
         }
 
         [HttpPost]
         //[Authorize(policy: "Resources-SaveRolePermissions")]
-        public async Task<IActionResult> SaveRolePermissions(List<RolePermissionUpdateVm> permissions)
+        public async Task<IActionResult> SaveRolePermissions(
+            List<RolePermissionUpdateVm> permissions
+        )
         {
             var result = await _resourceService.ValidateAndProcessPermissions(permissions);
-            return result.IsSuccess
-                ? RedirectToAction("Index", "Roles")
-                : BadRequest(result.Error);
+            return result.IsSuccess ? RedirectToAction("Index", "Roles") : BadRequest(result.Error);
         }
     }
 }

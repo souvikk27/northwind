@@ -12,14 +12,15 @@ namespace Northwind.ViewModels
         public decimal PreviousMonthEarnings { get; set; }
         public decimal YearToDateEarnings { get; set; }
         public decimal ProjectedAnnualEarnings { get; set; }
-        
-        public List<MonthlyEarningVm> MonthlyEarnings { get; set; }
-        public List<CategoryEarningVm> CategoryEarnings { get; set; }
-        public List<CustomerEarningVm> CustomerEarnings { get; set; }
-        
+
+        public List<MonthlyEarningVm>? MonthlyEarnings { get; set; }
+        public List<CategoryEarningVm>? CategoryEarnings { get; set; }
+        public List<CustomerEarningVm>? CustomerEarnings { get; set; }
+
         public decimal MonthOverMonthChange => CurrentMonthEarnings - PreviousMonthEarnings;
-        public decimal MonthOverMonthPercentChange => PreviousMonthEarnings != 0 
-            ? (CurrentMonthEarnings - PreviousMonthEarnings) / PreviousMonthEarnings * 100 
-            : 0;
+        public decimal MonthOverMonthPercentChange =>
+            PreviousMonthEarnings != 0
+                ? (CurrentMonthEarnings - PreviousMonthEarnings) / PreviousMonthEarnings * 100
+                : 0;
     }
 }
